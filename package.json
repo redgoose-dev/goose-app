@@ -1,9 +1,14 @@
 {
   "name": "first-gallery",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": false,
   "license": "MIT",
   "author": "Redgoose",
+  "description" : "gallery app from goose",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dev-goose/app-first-gallery.git"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",

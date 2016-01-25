@@ -60,7 +60,7 @@ if(!defined("__GOOSE__")){exit();}
 	}
 	else
 	{
-		echo '<div class="not-item"><i></i><span>not found item</span></div>';
+		echo '<div class="not-item"><i class="fa fa-folder-o"></i><span>not found item</span></div>';
 	}
 	?>
 
