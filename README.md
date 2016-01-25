@@ -8,7 +8,7 @@ Goose를 이용하여 갤러리 앱을 만들게 되었습니다.
 심플한 형태지만 유연하고 자연스러게 흘러가는 형태로 가다보니 작업량이 상당히 많아지게 되었습니다.  
 설정값이 많기 때문에 복잡해 보이지만 충분히 높은 퀄리티의 결과물을 보여줄 수 있을겁니다.
 
-__데모 : <a href="http://projects.redgoose.me/2015/goose/app/first-gallery/" target="_blank">http://projects.redgoose.me/2015/goose/app/first-gallery/</a>__
+__데모 : http://projects.redgoose.me/2015/goose/app/first-gallery/__
 
 자세한 설치와 설정하는 방법은 아래 위키의 글을 참고해주세요.
 
