@@ -109,4 +109,5 @@ hist.initPopEvent({
 });
 
 
+// init fast click
 fastclick(document.body);

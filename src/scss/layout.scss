@@ -581,6 +581,7 @@ html.hidden-scroll {
 			padding: 40px 15px; margin-top: -58px;
 			font-size: 36px; color: $color-headbar;
 			text-decoration: none; text-align: center;
+			outline: 0;
 			&.prev {left: 30px;}
 			&.next {right: 30px;}
 			&.close {
@@ -597,7 +598,7 @@ html.hidden-scroll {
 				i {
 					$size-b: 40px;
 					$border-width: 2px;
-					$border-color: #555;
+					$border-color: $color-headbar;
 					position: absolute;
 					width: $size-b; height: $size-b;
 					top: 50%; left: 50%;
@@ -625,6 +626,19 @@ html.hidden-scroll {
 					}
 				}
 
+			}
+			&:hover, &:active {
+				&.prev, &.next {
+					color: mix($color-headbar, #fff, 50%);
+				}
+				&.close {
+					color: mix($color-headbar, #fff, 50%);
+				}
+				.css3 &.close {
+					i:before, i:after {
+						background: mix($color-headbar, #fff, 50%);
+					}
+				}
 			}
 		}
 		span.btn {color: #ccc;}
@@ -725,6 +739,13 @@ html.hidden-scroll {
 							background: none;
 						}
 						&:after {display: none;}
+					}
+				}
+				&:hover, &:active {
+					.css3 &.close {
+						i:before, i:after {
+							background: none;
+						}
 					}
 				}
 			}
