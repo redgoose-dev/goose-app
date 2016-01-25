@@ -18,6 +18,8 @@ __goose-dev article : http://src.goose-dev.com/__
 
 자세한 설치와 설정하는 방법은 아래 위키의 글을 참고해주세요.
 
+0. [Home](https://github.com/dev-goose/app-first-gallery/wiki)  
+첫페이지 섹션
 1. [Install](https://github.com/dev-goose/app-first-gallery/wiki/Install)  
 APP을 설치하는것에 대한 내용을 기록한 섹션입니다.
 1. [Make datas](https://github.com/dev-goose/app-first-gallery/wiki/Make-datas)  
