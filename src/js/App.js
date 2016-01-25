@@ -69,7 +69,7 @@ if ($photoIndex.length)
 	let $moreItem = $photoIndex.children('.more-item');
 	if (userData.preference.index.print_moreitem && $moreItem.length)
 	{
-		index.isPaginate = true;
+		index.isNextpage = true;
 		index.loadMoreItems($moreItem.children('button'));
 	}
 
@@ -77,7 +77,7 @@ if ($photoIndex.length)
 	let $paginate = $photoIndex.children('.paginate');
 	if (userData.preference.index.print_paginate && $paginate.length)
 	{
-		index.isNextpage = true;
+		index.isPaginate = true;
 		index.$paginate = $paginate;
 		index.initPaginateEvent(index.$paginate.find('a'));
 	}

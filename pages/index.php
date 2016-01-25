@@ -68,7 +68,7 @@ if(!defined("__GOOSE__")){exit();}
 
 	<?php
 	// paginate
-	if ($data['pageNavigation'])
+	if ($pref->json['index']['print_paginate'] && $data['pageNavigation'])
 	{
 		$nav = $data['pageNavigation'];
 		$url_prev = ($nav->prev) ? makeLinkUrl($_target, $_params, [ 'keyword' => $_GET['keyword'], 'page' => $nav->prev['id'] ]) : '';
@@ -92,11 +92,12 @@ if(!defined("__GOOSE__")){exit();}
 	}
 
 	// next items
-	if ($data['nextpage'])
+	if ($pref->json['index']['print_moreitem'])
 	{
+		$class_hide = ($data['nextpage']) ? '' : 'class="hide"';
 	?>
 		<nav class="more-item">
-			<button type="button" data-nextpage="<?=$data['nextpage']?>">
+			<button type="button" data-nextpage="<?=$data['nextpage']?>" <?=$class_hide?>>
 				<i class="icon-plus">plus</i>
 			</button>
 		</nav>

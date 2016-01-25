@@ -8,5 +8,17 @@ Goose를 이용하여 갤러리 앱을 만들게 되었습니다.
 심플한 형태지만 유연하고 자연스러게 흘러가는 형태로 가다보니 작업량이 상당히 많아지게 되었습니다.  
 설정값이 많아졌기 때문에 많이 복잡해 보이지만 충분히 높은 퀄리티의 결과물을 보여줄 수 있을겁니다.
 
+__데모 : [Demo](http://...)__
 
-// TODO : 메뉴얼에 해당되는 내용은 위키쪽으로 옮겼음. 글 작성이 끝나면 그쪽으로 링크걸 예정
+자세한 설치와 설정하는 방법은 아래 위키의 글을 참고해주세요.
+
+1. [Install](https://github.com/dev-goose/app-first-gallery/wiki/Install)  
+APP을 설치하는것에 대한 내용을 기록한 섹션입니다.
+1. [Make datas](https://github.com/dev-goose/app-first-gallery/wiki/Make-datas)  
+데이터를 입력하는 것에 대한 섹션입니다.
+1. [Settings](https://github.com/dev-goose/app-first-gallery/wiki/Settings)  
+앱에대한 설정에 대한 내용을 기록한 섹션입니다.
+1. [Make pages](https://github.com/dev-goose/app-first-gallery/wiki/Make-page)  
+페이지를 만들고 수정하는 것에 대한 내용의 섹션입니다.
+1. [Development](https://github.com/dev-goose/app-first-gallery/wiki/Development)  
+개발된 APP 프로그램의 기능을 수정하거나 추가에 대한 내용과 스타일 수정에 대한 내용을 담은 섹션입니다.
