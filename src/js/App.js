@@ -3,6 +3,7 @@ const layout = require('./Layout.js');
 const index = require('./Index.js');
 const article = require('./Article.js');
 const hist = require('./History.js');
+const fastclick = require('fastclick');
 
 // set current url
 let url = location.pathname + location.search;
@@ -106,3 +107,6 @@ if ($article.length)
 hist.initPopEvent({
 	article : article
 });
+
+
+fastclick(document.body);

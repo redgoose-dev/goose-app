@@ -14,13 +14,13 @@ function renderGNB($o, $depth)
 	foreach($o as $k=>$v)
 	{
 		$url = ($v['external']) ? $v['url'] : __ROOT__.$v['url'];
-		$url = ($v['url'] != '#') ? 'href="'.$url.'"' : '';
+		$url = ($v['url'] != '#') ? $url : 'javascript:;';
 
 		$target = ($v['target']) ? 'target="'.$v['target'].'"' : '';
 		$active = (preg_match("|".preg_quote($v['url'])."|", $_SERVER['REQUEST_URI'], $arr)) ? 'class="active"' : '';
 
 		$result .= "<li $active>";
-		$result .= "<a $url $target>$v[name]</a>";
+		$result .= "<a href=\"$url\" $target>$v[name]</a>";
 		$result .= (count($v['children'])) ? renderGNB($v['children'], $depth + 1) : '';
 		$result .= '</li>';
 	}

@@ -30,7 +30,6 @@ $class_html = ($class_html) ? ' class="'.$class_html.'"' : '';
 <link rel="stylesheet" href="<?=__ROOT__?>/dist/vendor/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?=__ROOT__?>/dist/vendor/noto-sans/fonts.css">
 <link rel="stylesheet" href="<?=__ROOT__?>/dist/css/layout.pkgd.css">
-<script>function log(o){console.log(o);}</script>
 </head>
 <body>
 <main>
@@ -84,6 +83,7 @@ $class_html = ($class_html) ? ' class="'.$class_html.'"' : '';
 </main>
 <script src="<?=__ROOT__?>/dist/js/vendor.pkgd.js"></script>
 <script>
+function log(o){console.log(o);}
 window.userData = {
 	environment : {
 		root : '<?=__ROOT__?>',
