@@ -20,13 +20,13 @@ __goose-dev article : http://src.goose-dev.com/__
 
 [Wiki home](https://github.com/dev-goose/app-first-gallery/wiki) : 위키 첫페이지 섹션
 
-1. [Install](https://github.com/dev-goose/app-first-gallery/wiki/Install)  
+1. [Install](https://github.com/dev-goose/app-first-gallery/wiki/1.-Install)  
 APP을 설치하는것에 대한 내용을 기록한 섹션입니다.
-1. [Make datas](https://github.com/dev-goose/app-first-gallery/wiki/Make-datas)  
+1. [Make datas](https://github.com/dev-goose/app-first-gallery/wiki/2.-Make-datas)  
 데이터를 입력하는 것에 대한 섹션입니다.
-1. [Settings](https://github.com/dev-goose/app-first-gallery/wiki/Settings)  
+1. [Settings](https://github.com/dev-goose/app-first-gallery/wiki/3.-Settings)  
 앱에대한 설정에 대한 내용을 기록한 섹션입니다.
-1. [Make pages](https://github.com/dev-goose/app-first-gallery/wiki/Make-page)  
+1. [Make pages](https://github.com/dev-goose/app-first-gallery/wiki/4.-Make-page)  
 페이지를 만들고 수정하는 것에 대한 내용의 섹션입니다.
-1. [Development](https://github.com/dev-goose/app-first-gallery/wiki/Development)  
+1. [Development](https://github.com/dev-goose/app-first-gallery/wiki/5.-Development)  
 개발된 APP 프로그램의 기능을 수정하거나 추가에 대한 내용과 스타일 수정에 대한 내용을 담은 섹션입니다.
