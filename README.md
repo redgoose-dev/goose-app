@@ -10,7 +10,7 @@ Goose를 이용하여 갤러리 앱을 만들게 되었습니다.
 
 ------------------------
 
-__GOOSE GitHub : https://github.com/RedgooseDev/goose__
+__GOOSE GitHub : https://github.com/RedgooseDev/goose__  
 __DEMO : http://projects.redgoose.me/2015/goose/app/first-gallery/__  
 __goose-dev article : http://src.goose-dev.com/article/6/__
 
