@@ -1,6 +1,20 @@
 <?php
 if(!defined("__GOOSE__")){exit();}
 
+/**
+ * URL Guide
+ *
+ * {APP}/ajax/ - 모든 article을 불러옵니다.
+ * {APP}/ajax/index/{nest_id}/ - {nest_id} 값을가진 둥지의 데이터를 가져옵니다.
+ * {APP}/ajax/index/{nest_id}/{category_srl}/ - {nest_id}값과 {category_srl} 값을 가진 데이터를 가져옵니다.
+ * {APP}/ajax/article/{article_srl}/ - {article_srl}값을 가진 article 데이터 하나를 가져옵니다.
+ * {APP}/ajax/upLike/{article_srl}/ - {article_srl}값을 가진 article의 like 값을 1 올립니다.
+ *
+ * {APP}/ajax/?page={page} - {page} 페이지 번호로 article 데이터를 가져옵니다.
+ * {APP}/ajax/?get={get} - {get}에 입력된 데이터만 가져옵니다. (nest,print_paginate,print_moreitem)
+ * {APP}/ajax/?render={render} - {render}에 입력된 형식의 데이터로 가져옵니다. (text,html)
+ *
+ */
 
 // set api
 require_once('lib/ClientAPI.class.php');

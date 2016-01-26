@@ -5,9 +5,8 @@ module.exports = {
 	article : null,
 
 	/**
-	 * Init loading
+	 * Init
 	 *
-	 * @Param object $target
 	 * @Return bool
 	 */
 	support()
