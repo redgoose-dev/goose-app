@@ -1,10 +1,20 @@
 <?php
 if(!defined("__GOOSE__")){exit();}
+
+// set index title
+if ($_GET['keyword'])
+{
+	$index_title = ($pref->json['string']['search_title']) ? $pref->json['string']['search_title'] : 'Search Result';
+}
+else
+{
+	$index_title = ($data['nest']['name']) ? $data['nest']['name'] : $pref->json['string']['intro_title'];
+}
 ?>
 
 <article class="photo-index" id="photoIndex">
 	<header>
-		<h1><?=($data['nest']['name']) ? $data['nest']['name'] : $pref->json['string']['intro_title']?></h1>
+		<h1><?=$index_title?></h1>
 		<?php
 		if (count($data['category']))
 		{
