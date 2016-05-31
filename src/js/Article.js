@@ -197,8 +197,6 @@ module.exports = {
 
 	/**
 	 * Modal template
-	 *
-	 * @Param object data
 	 */
 	modalTemplate()
 	{
@@ -346,6 +344,8 @@ module.exports = {
 
 	/**
 	 * Go url in article
+	 * 
+	 * @Param string url
 	 */
 	go(url)
 	{
