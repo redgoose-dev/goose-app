@@ -19,7 +19,7 @@ var vendors = [
 	'./node_modules/jquery/dist/jquery.min.js',
 	'./node_modules/masonry-layout/dist/masonry.pkgd.min.js',
 	'./node_modules/imagesloaded/imagesloaded.pkgd.min.js',
-	'./node_modules/fastclick/lib/fastclick.min.js',
+	'./src/vendor/fastclick/fastclick.min.js',
 	'./src/vendor/CSS3/CSS3.min.js'
 ];
 // set directory

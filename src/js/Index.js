@@ -128,7 +128,7 @@ module.exports = {
 		var ev = userData.environment;
 		return data.map((o, k) => {
 			let url = ev.root + '/article/' + o.srl + '/';
-			let img = ev.gooseRoot + '/' + o.json.thumnail.url;
+			let img = ev.gooseRoot + '/' + o.json.thumbnail.url;
 			return ('<div class="grid-item">' +
 					'<a href="' + url + '">' +
 						'<figure>' +

@@ -25,7 +25,7 @@ $class_html = ($class_html) ? ' class="'.$class_html.'"' : '';
 <meta property="og:url" content="<?=__ROOT_URL__.$_SERVER['REQUEST_URI']?>" />
 <meta property="og:description" content="<?=$description?>">
 <meta property="og:locale" content="ko_KR" />
-<?=(isset($data['article']['json']['thumnail']['url'])) ? '<meta property="og:image" content="'.__GOOSE_URL__.'/'.$data['article']['json']['thumnail']['url'].'">' : ''?>
+<?=(isset($data['article']['json']['thumbnail']['url'])) ? '<meta property="og:image" content="'.__GOOSE_URL__.'/'.$data['article']['json']['thumbnail']['url'].'">' : ''?>
 
 <link rel="stylesheet" href="<?=__ROOT__?>/dist/vendor/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?=__ROOT__?>/dist/vendor/noto-sans/fonts.css">

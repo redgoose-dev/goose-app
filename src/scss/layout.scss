@@ -542,7 +542,9 @@ html.hidden-scroll {
 		padding: $padding-size $padding-size $padding-size*2;
 		font-size: 13px; color: #111;
 		min-height: 340px;
-		word-break: break-all;
+		.markdown-body {
+			word-break: break-all;
+		}
 
 		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 			img {zoom: 0.5;}

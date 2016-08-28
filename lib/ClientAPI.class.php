@@ -274,10 +274,9 @@ class ClientAPI {
 			case 'markdown':
 				// load parsedown
 				require_once(__GOOSE_PWD__.'vendor/Parsedown/Parsedown.class.php');
-				require_once(__GOOSE_PWD__.'vendor/parsedown-extra/ParsedownExtra.php');
 
 				// get instance parsedown
-				$Parsedown = new ParsedownExtra();
+				$Parsedown = new Parsedown();
 
 				// convert markdown
 				$article['content'] = '<div class="markdown-body">'.$Parsedown->text($article['content']).'</div>';

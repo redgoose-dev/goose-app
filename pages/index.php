@@ -53,7 +53,7 @@ else
 				<div class="grid-item">
 					<a href="<?=__ROOT__.'/article/'.$v['srl'].'/'?>">
 						<figure>
-							<img src="<?=__GOOSE_ROOT__.'/'.$v['json']['thumnail']['url']?>" alt="">
+							<img src="<?=__GOOSE_ROOT__.'/'.$v['json']['thumbnail']['url']?>" alt="">
 						</figure>
 						<strong><?=$v['title']?></strong>
 						<div class="meta">
