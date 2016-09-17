@@ -1,11 +1,11 @@
 <!doctype html>
 <?php
 $title = $pref->json['meta']['title'];
-$title .= ($_target == 'index' && isset($data['nest']['name'])) ? ' - '.$data['nest']['name'] : '';
-$title .= ($_target == 'index' && isset($data['category_name'])) ? ' - '.$data['category_name'] : '';
-$title .= ($_target == 'article' && isset($data['article']['title'])) ? ' - '.$data['article']['title'] : '';
+$title .= ($_target == 'index' && isset($data->nest['name'])) ? ' - '.$data->nest['name'] : '';
+$title .= ($_target == 'index' && isset($data->category_name)) ? ' - '.$data->category_name : '';
+$title .= ($_target == 'article' && isset($data->article['title'])) ? ' - '.$data->article['title'] : '';
 
-$description = ($_target == 'article' && isset($data['article']['content'])) ? renderDescription($data['article']['content']) : $pref->json['meta']['description'];
+$description = ($_target == 'article' && isset($data->article['content'])) ? renderDescription($data->article['content']) : $pref->json['meta']['description'];
 
 $class_html = ($_target == 'article') ? ' mode-article' : '';
 $class_html .= ($_target == 'page') ? ' mode-page' : '';
@@ -25,7 +25,7 @@ $class_html = ($class_html) ? ' class="'.$class_html.'"' : '';
 <meta property="og:url" content="<?=__ROOT_URL__.$_SERVER['REQUEST_URI']?>" />
 <meta property="og:description" content="<?=$description?>">
 <meta property="og:locale" content="ko_KR" />
-<?=(isset($data['article']['json']['thumbnail']['url'])) ? '<meta property="og:image" content="'.__GOOSE_URL__.'/'.$data['article']['json']['thumbnail']['url'].'">' : ''?>
+<?=(isset($data->article['json']['thumbnail']['url'])) ? '<meta property="og:image" content="'.__GOOSE_URL__.'/'.$data->article['json']['thumbnail']['url'].'">' : ''?>
 
 <link rel="stylesheet" href="<?=__ROOT__?>/dist/vendor/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<?=__ROOT__?>/dist/vendor/noto-sans/fonts.css">
@@ -45,7 +45,7 @@ $class_html = ($class_html) ? ' class="'.$class_html.'"' : '';
 			<button type="button" data-target="profile"><i class="fa fa-user"></i></button>
 		</nav>
 		<nav class="gnb">
-			<?=(count($gnb->json['gnb'])) ? renderGNB($gnb->json['gnb'], 1) : ''?>
+			<?=(count($pref->json['navigation']['gnb'])) ? renderGNB($pref->json['navigation']['gnb'], 1) : ''?>
 		</nav>
 		<form action="<?=__ROOT__?>" method="get" class="keyword-search">
 			<fieldset>
@@ -63,7 +63,7 @@ $class_html = ($class_html) ? ' class="'.$class_html.'"' : '';
 				<i class="fa fa-angle-down"></i>
 			</button>
 			<div class="dropdown">
-				<?=(count($gnb->json['profile'])) ? renderGNB($gnb->json['profile'], 1) : ''?>
+				<?=(count($pref->json['navigation']['profile'])) ? renderGNB($pref->json['navigation']['profile'], 1) : ''?>
 			</div>
 		</nav>
 	</header>
@@ -89,7 +89,7 @@ window.userData = {
 		root : '<?=__ROOT__?>',
 		gooseRoot : '<?=__GOOSE_ROOT__?>',
 		target : '<?=$_target?>',
-		params : JSON.parse(decodeURIComponent('<?=Util::arrayToJson($_params, true)?>')),
+		params : JSON.parse(decodeURIComponent('<?=core\Util::arrayToJson($_params, true)?>')),
 		page : parseInt('<?=($_GET['page']) ? (int)$_GET['page'] : 1?>'),
 		keyword : '<?=($_GET['keyword']) ? $_GET['keyword'] : ''?>'
 	},

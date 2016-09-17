@@ -59,13 +59,13 @@ switch($_name)
 		]);
 
 		// get category name
-		if ($data['category'])
+		if ($data->category)
 		{
-			foreach($data['category'] as $k=>$v)
+			foreach($data->category as $k=>$v)
 			{
 				if ($v['active'] && ($v['srl'] > 0))
 				{
-					$data['category_name'] = $v['name'];
+					$data->category_name = $v['name'];
 					break;
 				}
 			}

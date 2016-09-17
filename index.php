@@ -9,7 +9,6 @@ else
 	exit;
 }
 
-
 @error_reporting(E_ALL ^ E_NOTICE);
 if (is_bool(DEBUG) && DEBUG)
 {
@@ -23,44 +22,37 @@ define('__IS_LOCAL__', (preg_match("/(192.168)/", $_SERVER['REMOTE_ADDR']) || ($
 
 // load program files
 require_once(__GOOSE_LIB__);
+
+
+// load functions
 require_once('lib/func.php');
 
 
 // get preferences
 try
 {
-	$tmp = Spawn::item([
-		'table' => Spawn::getTableName('json'),
+	// get preference data
+	$tmp = core\Spawn::item([
+		'table' => core\Spawn::getTableName('JSON'),
 		'field' => 'json',
 		'where' => 'srl='.(int)$srl_json_pref,
 	])['json'];
 	if (!$tmp) throw new Exception('not found preference data');
-	$pref = new Object([
-		'string' => $tmp,
-		'json' => Util::jsonToArray($tmp, true, true),
-	]);
 
-	// get gnb
-	$tmp = Spawn::item([
-		'table' => Spawn::getTableName('json'),
-		'field' => 'json',
-		'where' => 'srl='.(int)$pref->json['srl']['json_gnb'],
-	])['json'];
-	if (!$tmp) throw new Exception('not found global navigation data');
-	$gnb = new Object([
-		'string' => $tmp,
-		'json' => Util::jsonToArray($tmp, true, true),
-	]);
+	// set preference
+	$pref = new stdClass();
+	$pref-> string = $tmp;
+	$pref->json = core\Util::jsonToArray($tmp, null, true);
 }
-catch(Exception $e)
+catch(\Exception $e)
 {
 	echo $e->getMessage();
-	Goose::end();
+	core\Goose::end();
 }
 
 
 // init router
-$router = Module::load('router');
+$router = core\Module::load('Router');
 $router->route->setBasePath(__ROOT__);
 require_once('lib/map.php');
 $router->match = $router->route->match();
@@ -100,10 +92,10 @@ if ($router->match)
 				'pageScale' => $pref->json['index']['count']['pageScale'],
 			]);
 
-			if ($data['state'] == 'error')
+			if ($data->state == 'error')
 			{
-				Goose::error(101, $data['message'], __ROOT_URL__);
-				Goose::end();
+				core\Goose::error(101, $data->message, __ROOT_URL__);
+				core\Goose::end();
 			}
 
 			$loc_container = 'pages/index.php';
@@ -136,22 +128,21 @@ if ($router->match)
 			]);
 
 			// get category name
-			if ($data['category'])
+			if ($data->category)
 			{
-				foreach($data['category'] as $k=>$v)
+				foreach($data->category as $k=>$v)
 				{
 					if ($v['active'] && ($v['srl'] > 0))
 					{
-						$data['category_name'] = $v['name'];
+						$data->category_name = $v['name'];
 						break;
 					}
 
 				}
 			}
-			if ($data['state'] == 'error')
+			if ($data->state == 'error')
 			{
-				Goose::error(101, $data['message'], __ROOT_URL__);
-				Goose::end();
+				core\Goose::error(101, $data->message, __ROOT_URL__);
 			}
 
 			$loc_container = 'pages/index.php';
@@ -177,10 +168,10 @@ if ($router->match)
 				'print_data' => ($_GET['get']) ? $_GET['get'] : 'all',
 			]);
 
-			if ($data['state'] == 'error')
+			if ($data->state == 'error')
 			{
-				Goose::error(101, $data['message'], __ROOT_URL__);
-				Goose::end();
+				core\Goose::error(101, $data->message, __ROOT_URL__);
+				core\Goose::end();
 			}
 
 			$loc_container = 'pages/article.php';
@@ -188,7 +179,7 @@ if ($router->match)
 			if ($_GET['popup'])
 			{
 				require_once($loc_container);
-				Goose::end();
+				core\Goose::end();
 			}
 			break;
 
@@ -202,7 +193,7 @@ if ($router->match)
 	{
 		$_name = ($_targetArray[1]) ? $_targetArray[1] : null;
 		require_once('pages/ajax.php');
-		Goose::end();
+		core\Goose::end();
 	}
 
 	require_once('pages/layout.php');
@@ -210,6 +201,6 @@ if ($router->match)
 else
 {
 	// 404 error
-	Goose::error(404, null, __ROOT_URL__);
-	Goose::end();
+	core\Goose::error(404, null, __ROOT_URL__);
+	core\Goose::end();
 }

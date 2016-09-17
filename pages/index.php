@@ -8,7 +8,7 @@ if ($_GET['keyword'])
 }
 else
 {
-	$index_title = ($data['nest']['name']) ? $data['nest']['name'] : $pref->json['string']['intro_title'];
+	$index_title = ($data->nest['name']) ? $data->nest['name'] : $pref->json['string']['intro_title'];
 }
 ?>
 
@@ -16,13 +16,13 @@ else
 	<header>
 		<h1><?=$index_title?></h1>
 		<?php
-		if (count($data['category']))
+		if (count($data->category))
 		{
 		?>
 			<nav>
 				<ul class="category-index">
 					<?php
-					foreach ($data['category'] as $k=>$v)
+					foreach ($data->category as $k=>$v)
 					{
 						$url = __ROOT__.'/index/'.$nest_id.'/';
 						$url .= ($v['srl'] > 0) ? $v['srl'].'/' : '';
@@ -41,13 +41,13 @@ else
 		?>
 	</header>
 	<?php
-	if (count($data['articles']))
+	if (count($data->articles))
 	{
 	?>
 		<div class="index grid">
 			<div class="grid-sizer"></div>
 			<?php
-			foreach($data['articles'] as $k=>$v)
+			foreach($data->articles as $k=>$v)
 			{
 			?>
 				<div class="grid-item">
@@ -78,9 +78,9 @@ else
 
 	<?php
 	// paginate
-	if ($pref->json['index']['print_paginate'] && $data['pageNavigation'])
+	if ($pref->json['index']['print_paginate'] && $data->pageNavigation)
 	{
-		$nav = $data['pageNavigation'];
+		$nav = $data->pageNavigation;
 		$url_prev = ($nav->prev) ? makeLinkUrl($_target, $_params, [ 'keyword' => $_GET['keyword'], 'page' => $nav->prev['id'] ]) : '';
 		$url_next = ($nav->next) ? makeLinkUrl($_target, $_params, [ 'keyword' => $_GET['keyword'], 'page' => $nav->next['id'] ]) : '';
 
@@ -104,10 +104,10 @@ else
 	// next items
 	if ($pref->json['index']['print_moreitem'])
 	{
-		$class_hide = ($data['nextpage']) ? '' : 'class="hide"';
+		$class_hide = ($data->nextpage) ? '' : 'class="hide"';
 	?>
 		<nav class="more-item">
-			<button type="button" data-nextpage="<?=$data['nextpage']?>" <?=$class_hide?>>
+			<button type="button" data-nextpage="<?=$data->nextpage?>" <?=$class_hide?>>
 				<i class="icon-plus">plus</i>
 			</button>
 		</nav>

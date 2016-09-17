@@ -16,7 +16,7 @@ if(!defined("__GOOSE__")){exit();}
 				<h1>404</h1>
 				<p class="message">page not found</p>
 				<nav>
-					<a href="#/" class="home" title="Home">
+					<a href="<?= __ROOT__ ?>/" class="home" title="Home">
 						<i class="fa fa-home"></i>
 					</a>
 				</nav>
