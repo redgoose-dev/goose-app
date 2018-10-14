@@ -1,5 +1,4 @@
-// set env
-require('dotenv').config();
+const env = require('./env.config');
 
 module.exports = {
 	mode: 'universal', // spa,universal
@@ -9,9 +8,16 @@ module.exports = {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ hid: 'description', name: 'description', content: process.env.APP_DESCRIPTION }
+			{ hid: 'description', name: 'description', content: env.app.description },
+			{ name: 'author', content: env.app.author },
+			{ name: 'keywords', content: env.app.keywords },
+			{ property: 'og:site_name', content: env.app.name },
+			{ property: 'og:url', content: env.app.url },
+			{ property: 'og:locale', content: env.app.locale },
+			{ property: 'og:type', content: 'website' },
 		],
 		link: [
+			{ rel: 'canonical', href: env.app.url },
 			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
 		]
 	},
@@ -23,10 +29,11 @@ module.exports = {
 	],
 
 	env: {
-		API_TOKEN: process.env.API_TOKEN,
-		PAGE_PER_SIZE: process.env.PAGE_PER_SIZE,
-		APP_NAME: process.env.APP_NAME,
-		APP_DESCRIPTION: process.env.APP_DESCRIPTION,
+		API_TOKEN: env.api.token,
+		PAGE_PER_SIZE: env.page.size,
+		APP_NAME: env.app.name,
+		APP_AUTHOR: env.app.author,
+		APP_COPYRIGHT: env.app.copyright,
 	},
 
 	plugins: [
@@ -38,7 +45,7 @@ module.exports = {
 	],
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
-		baseURL: process.env.API_URL,
+		baseURL: env.api.url,
 	},
 
 	build: {

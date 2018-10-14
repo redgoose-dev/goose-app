@@ -1,6 +1,6 @@
-export default function (cox, aa) {
+export default function (cox) {
 
-	const { $axios, redirect } = cox;
+	const { $axios, redirect, error } = cox;
 
 	// set header
 	$axios.setHeader('Authorization', cox.env.API_TOKEN);
@@ -10,10 +10,19 @@ export default function (cox, aa) {
 	});
 
 	$axios.onError(error => {
-		const code = parseInt(error.response && error.response.status);
-		if (code === 400) {
-			redirect('/400')
-		}
+		console.error(error);
+		// const code = parseInt(error.response && error.response.status);
+		//
+		// switch (code)
+		// {
+		// 	case 400:
+		// 	default:
+		// 		redirect('/500');
+		// 		error({
+		// 			statusCode: 500,
+		// 			message: 'Failed call API',
+		// 		});
+		// }
 	});
 
 }
