@@ -1,63 +1,50 @@
-const pkg = require('./package')
+// set env
+require('dotenv').config();
 
 module.exports = {
-  mode: 'universal',
+	mode: 'universal', // spa,universal
 
-  /*
-  ** Headers of the page
-  */
-  head: {
-    title: pkg.name,
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-  },
+	head: {
+		title: process.env.APP_NAME,
+		meta: [
+			{ charset: 'utf-8' },
+			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+			{ hid: 'description', name: 'description', content: process.env.APP_DESCRIPTION }
+		],
+		link: [
+			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+		]
+	},
 
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
+	loading: { color: '#ff0000' },
 
-  /*
-  ** Global CSS
-  */
-  css: [
-  ],
+	css: [
+		'~assets/css/app.scss'
+	],
 
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-  ],
+	env: {
+		API_TOKEN: process.env.API_TOKEN,
+		PAGE_PER_SIZE: process.env.PAGE_PER_SIZE,
+		APP_NAME: process.env.APP_NAME,
+		APP_DESCRIPTION: process.env.APP_DESCRIPTION,
+	},
 
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
-  ],
-  /*
-  ** Axios module configuration
-  */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
+	plugins: [
+		'~/plugins/axios'
+	],
 
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-      
-    }
-  }
-}
+	modules: [
+		'@nuxtjs/axios'
+	],
+	axios: {
+		// See https://github.com/nuxt-community/axios-module#options
+		baseURL: process.env.API_URL,
+	},
+
+	build: {
+		extractCSS: true,
+		extend(config, ctx) {
+			//
+		}
+	}
+};
