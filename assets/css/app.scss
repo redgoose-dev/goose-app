@@ -1,3 +1,28 @@
-div {
-	border: 1px solid #000;
+@import "./libs/valiables";
+@import "./libs/normalize";
+
+body {
+	margin: 0;
+	min-width: 320px;
+	-webkit-text-size-adjust: 100%;
+	font-size: 1rem;
+	line-height: 1.5;
+	text-size-adjust: 100%;
+	background: $color-bg;
+	color: $color-text-base;
+}
+
+body, button, input, textarea, select {
+	font-family: $font-system;
+	text-size-adjust: none;
+}
+
+a {
+	color: $color-key;
+}
+code,
+kbd,
+pre,
+samp {
+	font-family: $font-console;
 }

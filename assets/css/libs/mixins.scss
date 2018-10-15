@@ -1,0 +1,29 @@
+@import "./valiables";
+
+// responsive
+@mixin responsive($range)
+{
+	@if $range == mini
+	{
+		@media (min-width: #{$size-screen-mini}) { @content; }
+	}
+	@else if $range == tablet
+	{
+		@media (min-width: #{$size-screen-tablet}) { @content; }
+	}
+		// 768 ~ 1000
+	@else if $range == desktop
+	{
+		@media (min-width: #{$size-screen-desktop}) { @content; }
+	}
+	@else if $range == max
+	{
+		@media (min-width: #{$size-screen-max}) { @content; }
+	}
+}
+
+// retina display
+@mixin retina()
+{
+	@media (-webkit-min-device-pixel-ratio: 2) { @content; }
+}

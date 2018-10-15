@@ -22,18 +22,18 @@ module.exports = {
 		]
 	},
 
-	loading: { color: '#ff0000' },
+	loading: {
+		color: env.app.loading.color,
+		failedColor: env.app.loading.failedColor,
+		height: env.app.loading.height,
+	},
 
 	css: [
 		'~assets/css/app.scss'
 	],
 
 	env: {
-		API_TOKEN: env.api.token,
-		PAGE_PER_SIZE: env.page.size,
-		APP_NAME: env.app.name,
-		APP_AUTHOR: env.app.author,
-		APP_COPYRIGHT: env.app.copyright,
+		...env,
 	},
 
 	plugins: [
