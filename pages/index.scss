@@ -6,9 +6,11 @@
 
 	&__header {
 		h1 {
-			margin: 0 0 10px;
+			margin: 0 0 15px;
 			padding: 0 20px;
-			font-size: 20px;
+			font-size: 24px;
+			font-family: $font-eng;
+			letter-spacing: -.5px;
 		}
 		nav {
 			margin: 0;
@@ -55,15 +57,19 @@
 			}
 		}
 	}
+	&__body {}
 
 	@include responsive(tablet) {
 		padding: 0 30px;
 		&__header {
+			text-align: center;
 			h1 {
 				margin: 0;
 				padding: 0;
-				font-size: 28px;
-				letter-spacing: 0.5px;
+				font-size: 32px;
+				letter-spacing: -.5px;
+				line-height: 1.25;
+				font-weight: 200;
 			}
 			nav {
 				padding: 0;

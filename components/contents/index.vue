@@ -1,13 +1,12 @@
 <template>
-<div>
-	<div v-if="(index && index.length)" class="articles">
-		<div v-for="(item,key) in index" class="item">
+<div class="body" :class="[ loading && 'body--loading' ]">
+	<div v-if="(computedIndex && computedIndex.length)" class="articles">
+		<div v-for="(item) in computedIndex" class="item">
 			<nuxt-link :to="`/article/${item.srl}`" class="item__wrap">
 				<figure class="item__image">
 					<img v-if="item.image" :src="`${item.image}`" :alt="item.title">
 					<span v-else>
-						TODO
-						<!--<img src="{{__ROOT__}}/assets/images/empty/{{rand(0,20)}}.svg" alt="">-->
+						<img :src="`/images/empty/${randomNumber(0,20)}.svg`" alt="">
 					</span>
 				</figure>
 				<div class="item__body">
@@ -30,19 +29,84 @@
 		<h1>no item</h1>
 	</article>
 
-	<hr>
-	<div class="paginate">
-		.paginate
+	<div class="nav-paginate">
+		<div class="nav-paginate__mobile">
+			<nav-paginate
+				v-if="!!total"
+				v-model="page"
+				:total="total"
+				:size="size"
+				:pageRange="2"
+				:firstLastButton="false"
+				:hidePrevNext="true"
+				@input="onChangePage"/>
+		</div>
+		<div class="nav-paginate__desktop">
+			<nav-paginate
+				v-if="!!total"
+				v-model="page"
+				:total="total"
+				:size="size"
+				:page-range="8"
+				:firstLastButton="false"
+				:hidePrevNext="true"
+				@input="onChangePage"/>
+		</div>
+	</div>
+
+	<div v-if="loading" class="loading">
+		<loading :show="true"/>
 	</div>
 </div>
 </template>
 
 <style src="./index.scss" lang="scss" scoped></style>
 <script>
+import * as datasets from '~/assets/libs/datasets';
+
 export default {
+	components: {
+		'nav-paginate': () => import('~/components/navigation/paginate'),
+		'loading': () => import('~/components/loading'),
+	},
 	props: {
 		index: { type: Array, default: [] },
 		total: { type: Number, default: 0 },
+		loading: { type: Boolean, default: false },
+		error: { type: String, default: null },
+		size: { type: Number, default: 24 },
 	},
+	data()
+	{
+		return {
+			page: 1,
+		}
+	},
+	computed: {
+		computedIndex()
+		{
+			return this.index.map((o) => {
+				return {
+					srl: o.srl,
+					url: `/article/${o.srl}`,
+					title: o.title,
+					date: datasets.getFormatDate(o.regdate, false),
+					categoryName: o.category_name,
+					image: (o.json && o.json.thumbnail && o.json.thumbnail.path) ? `${this.$store.state.env.api.url}/${o.json.thumbnail.path}` : null,
+				};
+			});
+		},
+	},
+	methods: {
+		randomNumber(min, max)
+		{
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		},
+		onChangePage(page)
+		{
+			// push event parent component
+			this.$emit('changePage', page);
+		},
+	}
 }
 </script>

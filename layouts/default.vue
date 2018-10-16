@@ -3,9 +3,9 @@
 	<header class="header">
 		<div class="header__body">
 			<h1 class="header__logo">
-				<nuxt-link to="/">
+				<a href="/">
 					<img src="/images/ico-logo.svg" alt="redgoose">
-				</nuxt-link>
+				</a>
 			</h1>
 			<nav class="header__navigation" id="headerNavigation">
 				<button type="button" title="toggle navigation" class="dropdown-button">

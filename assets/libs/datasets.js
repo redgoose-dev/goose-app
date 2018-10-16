@@ -22,24 +22,3 @@ export function getFormatDate(date=null, useTime=true)
 
 	return `${year}-${month}-${day}`;
 }
-
-
-/**
- * convert index articles
- *
- * @param {Array} src
- * @param {Object} state // vuex state
- * @return {Array}
- */
-export function convertIndex(src, state)
-{
-	return src.map((o) => {
-		return {
-			srl: o.srl,
-			title: o.title,
-			date: getFormatDate(o.regdate, false),
-			categoryName: o.category_name,
-			image: (o.json && o.json.thumbnail && o.json.thumbnail.path) ? `${state.env.api.url}/${o.json.thumbnail.path}` : null,
-		};
-	});
-}

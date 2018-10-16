@@ -1,11 +1,29 @@
 @import "../../assets/css/libs/valiables";
 @import "../../assets/css/libs/mixins";
 
+.body {
+	position: relative;
+	margin: 0;
+	min-height: 240px;
+	&--loading {
+		height: 240px;
+		overflow: hidden;
+	}
+	@include responsive(tablet) {
+		margin: 30px 0 0;
+		min-height: 480px;
+		&--loading {
+			height: 480px;
+			overflow: hidden;
+		}
+	}
+}
+
 .articles {
 	@include responsive(tablet) {
 		display: flex;
 		flex-wrap: wrap;
-		margin: 5px -10px 0;
+		margin: 0 -10px;
 		box-sizing: border-box;
 	}
 }
@@ -97,13 +115,52 @@
 			}
 		}
 	}
+	@include responsive(tablet) {
+		width: 50%;
+		box-shadow: 0 0 0;
+		padding: 10px;
+		&__wrap {
+			position: relative;
+			box-shadow: 0 3px 20px rgba(#000, .06);
+			&:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				pointer-events: none;
+				border: 1px solid $color-key;
+				opacity: 0;
+				transition: opacity .2s ease-out;
+			}
+			&:hover {
+				&:after {
+					opacity: 1;
+				}
+			}
+			&:active {
+				background: none;
+			}
+		}
+		&__image {
+			> span {
+				background: #ccc;
+				> img {
+					opacity: .1;
+				}
+			}
+		}
+		&__body {
+			min-width: 0;
+			padding: 0 20px;
+			strong {}
+			p {}
+		}
+	}
 	@include responsive(max) {
 		width: 33.3333%;
 	}
-}
-
-.paginate {
-
 }
 
 .empty {
@@ -127,5 +184,44 @@
 		margin-top: 10px;
 		padding: 12vh 0;
 		background: #f4f4f4;
+	}
+}
+
+.nav-paginate {
+	margin: 40px 0 0;
+	&__mobile {
+		display: block;
+	}
+	&__desktop {
+		display: none;
+	}
+	@include responsive(tablet) {
+		&__mobile {
+			display: none;
+		}
+		&__desktop {
+			display: block;
+		}
+	}
+}
+
+.loading {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba($color-bg, .8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 100px;
+		background: linear-gradient(rgba($color-bg, 0), $color-bg);
 	}
 }
