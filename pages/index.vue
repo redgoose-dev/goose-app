@@ -65,6 +65,7 @@ export default {
 				this.index = res.data.index;
 				this.total = res.data.total;
 				this.loading = false;
+				// TODO: router.push() 작업하기
 			}
 			catch(e)
 			{

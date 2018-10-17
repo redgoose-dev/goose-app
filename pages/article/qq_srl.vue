@@ -52,27 +52,14 @@ export default {
 	{
 		return cox.params.srl && /^\d+$/.test(cox.params.srl);
 	},
-	async asyncData(cox)
+	async asyncData(cox, app)
 	{
-		const { req, res } = cox;
 		let srl = cox.params.srl;
-
-		if (req)
-		{
-			// TODO: 여기부터 시작..
-			// TODO: 라이브러리로 합쳐야함
-			// TODO: https://expressjs.com/en/api.html#res.cookie
-			res.cookie(`redgoose-hit-${srl}`, 1, { path: '/' });
-		}
-		else
-		{
-			// client
-		}
-
 		let params = {
 			hit: 0, // TODO: 쿠키에 따라 1로 바꿔야함
 			ext_field: 'category_name,nest_name',
 		};
+
 		try
 		{
 			let res = await cox.$axios.$get(`/articles/${srl}${util.serialize(params, true)}`);
