@@ -1,6 +1,9 @@
 <template>
 <div class="body" :class="[ loading && 'body--loading' ]">
-	<div v-if="(computedIndex && computedIndex.length)" class="articles">
+	<div v-if="loading" class="loading">
+		<loading :show="true"/>
+	</div>
+	<div v-else-if="!loading && (computedIndex && computedIndex.length)" class="articles">
 		<div v-for="(item) in computedIndex" class="item">
 			<nuxt-link :to="`/article/${item.srl}`" class="item__wrap">
 				<figure class="item__image">
@@ -28,10 +31,6 @@
 		</figure>
 		<h1>no item</h1>
 	</article>
-
-	<div v-if="loading" class="loading">
-		<loading :show="true"/>
-	</div>
 </div>
 </template>
 

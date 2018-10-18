@@ -85,6 +85,7 @@ export default {
 				if (!res.success) throw res.message;
 				this.index = res.data.index;
 				this.total = res.data.total;
+				await util.sleep(100);
 				this.loading = false;
 			}
 			catch(e)

@@ -1,5 +1,5 @@
 <template>
-	<p>smidgsdg</p>
+	<p>articles page: {{id}}</p>
 </template>
 
 <script>
@@ -16,6 +16,9 @@ export default {
 	},
 	async asyncData(cox)
 	{
+		let id = cox.route.params.nest;
+		return { id };
+
 		let params = {
 			category: {},
 			article: {
@@ -37,7 +40,7 @@ export default {
 			if (!res.success) throw res.message;
 			// check app srl
 			if (parseInt(res.data.app_srl) !==  cox.store.state.env.api.app_srl) throw 'Not found data';
-			console.log(res.data.app_srl, cox.store.state.env.api.app_srl);
+			//console.log(res.data.app_srl, cox.store.state.env.api.app_srl);
 		}
 		catch(e)
 		{
@@ -47,14 +50,7 @@ export default {
 
 		try
 		{
-			let [ categories, articles ] = await Promise.all([
-				null,
-				null,
-				cox.$axios.$get('/articles' + util.serialize(params.article, true))
-			]);
-			console.log(nest);
-			if (!(nest && categories && articles)) throw 'Service error';
-			if (!articles.success) throw articles.message;
+			// TODO: call api
 		}
 		catch(e)
 		{

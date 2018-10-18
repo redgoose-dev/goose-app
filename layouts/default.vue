@@ -7,32 +7,34 @@
 					<img src="/images/ico-logo.svg" alt="redgoose">
 				</a>
 			</h1>
-			<nav class="header__navigation" id="headerNavigation">
-				<button type="button" title="toggle navigation" class="dropdown-button">
+			<nav class="header__navigation" :class="[ showNavigation && 'active' ]">
+				<button type="button" title="toggle navigation" @click="onClickToggleNavigation" class="dropdown-button">
 					<img src="/images/ico-menu.svg" class="on" alt="menu">
 					<img src="/images/ico-close.svg" class="off" alt="close menu">
 				</button>
-				<div class="header-navigation dropdown-content">
+				<div
+					@click="onClickDropdown"
+					class="header-navigation dropdown-content"
+					:class="[ showNavigation && 'active' ]">
 					<ul>
 						<li v-for="(o,k) in navigation">
-							<a v-if="o.external" :href="o.url" :target="o.target">
-								{{o.label}}
-							</a>
-							<nuxt-link v-else :to="o.url">
-								{{o.label}}
-							</nuxt-link>
+							<a v-if="o.external" :href="o.url" :target="o.target">{{o.label}}</a>
+							<a v-else :href="o.url" @click="onClickNavigationMenu">{{o.label}}</a>
 						</li>
 					</ul>
 				</div>
 			</nav>
 		</div>
-		<div class="header__search" id="headerSearch">
-			<button type="button" title="toggle search form" class="dropdown-button">
+		<div class="header__search" :class="[ showSearchForm && 'active' ]">
+			<button type="button" title="toggle search form" @click="onClickToggleSearchForm" class="dropdown-button">
 				<img src="/images/ico-search.svg" class="on" alt="search">
 				<img src="/images/ico-close.svg" class="off" alt="close menu">
 			</button>
-			<div class="header-search dropdown-content">
-				<form action="/search" method="get" @submit="onSubmit">
+			<div
+				@click="onClickDropdown"
+				class="header-search dropdown-content"
+				:class="[ showSearchForm && 'active' ]">
+				<form action="/search" method="get" @submit="onSubmitSearchKeyword">
 					<fieldset>
 						<legend>search keyword form</legend>
 						<span>
@@ -60,15 +62,15 @@
 	</div>
 
 	<footer class="footer">
-		<p class="footer__copyright">
-			{{copyright}}
-		</p>
+		<p class="footer__copyright">{{copyright}}</p>
 	</footer>
 </main>
 </template>
 
 <style src="./default.scss" lang="scss" scoped></style>
 <script>
+import * as util from '~/assets/libs/util';
+
 export default {
 	computed: {
 		navigation()
@@ -88,11 +90,16 @@ export default {
 	data()
 	{
 		return {
+			showNavigation: false,
+			showSearchForm: false,
 			copyright: this.$store.state.env.app.copyright,
 		};
 	},
 	mounted()
 	{
+		util.initCustomEvent();
+		window.on('click.headerDropdown', this.onClickWindowForHeaderDropdown);
+
 		try
 		{
 			let getPreference = window.localStorage.getItem('preference');
@@ -101,14 +108,41 @@ export default {
 				this.$store.dispatch('updatePreference', JSON.parse(getPreference));
 			}
 		}
-		catch(e)
-		{}
+		catch(e) {}
 	},
 	methods: {
-		onSubmit(e)
+		onClickToggleNavigation(e)
+		{
+			e.stopPropagation();
+			this.showSearchForm = false;
+			this.showNavigation = !this.showNavigation;
+		},
+		onClickToggleSearchForm(e)
+		{
+			e.stopPropagation();
+			this.showNavigation = false;
+			this.showSearchForm = !this.showSearchForm;
+		},
+		onClickWindowForHeaderDropdown()
+		{
+			this.showNavigation = false;
+			this.showSearchForm = false;
+		},
+		onClickDropdown(e)
+		{
+			e.stopPropagation();
+		},
+		onClickNavigationMenu(e)
 		{
 			e.preventDefault();
-		}
+			this.$router.push(e.currentTarget.getAttribute('href'));
+			this.onClickWindowForHeaderDropdown();
+		},
+		onSubmitSearchKeyword(e)
+		{
+			console.log('onSubmitSearchKeyword');
+			e.preventDefault();
+		},
 	}
 }
 </script>

@@ -158,8 +158,11 @@
 			p {}
 		}
 	}
-	@include responsive(max) {
+	@include responsive(large) {
 		width: 33.3333%;
+	}
+	@include responsive(max) {
+		width: 25%;
 	}
 }
 

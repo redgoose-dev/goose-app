@@ -47,6 +47,7 @@ export default {
 	width: 40%;
 	min-width: 300px;
 	margin: 0 auto;
+	background: transparent;
 
 	&__loader {
 		position: absolute;
