@@ -49,7 +49,6 @@
 <style src="./index.scss" lang="scss" scoped></style>
 <script>
 // original repo: https://github.com/lokyoung/vuejs-paginate
-
 export default {
 	components: {
 		'icon': () => import('./icon'),

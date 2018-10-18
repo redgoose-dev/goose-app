@@ -3,18 +3,34 @@
 	<header class="index__header">
 		<h1>Newest articles</h1>
 	</header>
-	<items-index
-		:index="index"
-		:total="total"
-		:loading="loading"
-		:error="error"
-		:size="params.size"
-		@changePage="onChangePage"
-		class="index__body"/>
+	<items-index :index="index" :loading="loading" :error="error" class="index__body"/>
+	<div class="nav-paginate">
+		<div class="nav-paginate__mobile">
+			<nav-paginate
+				v-if="!!total"
+				v-model="page"
+				:total="total"
+				:size="size"
+				:pageRange="2"
+				:firstLastButton="false"
+				:hidePrevNext="true"
+				@input="onChangePage"/>
+		</div>
+		<div class="nav-paginate__desktop">
+			<nav-paginate
+				v-if="!!total"
+				v-model="page"
+				:total="total"
+				:size="size"
+				:page-range="8"
+				:firstLastButton="false"
+				:hidePrevNext="true"
+				@input="onChangePage"/>
+		</div>
+	</div>
 </article>
 </template>
 
-<style src="./index.scss" lang="scss" scoped></style>
 <script>
 import * as util from '~/assets/libs/util';
 
@@ -22,20 +38,22 @@ export default {
 	name: 'Intro',
 	components: {
 		'items-index': () => import('~/components/contents/index'),
+		'nav-paginate': () => import('~/components/navigation/paginate'),
 	},
 	async asyncData(cox)
 	{
 		try
 		{
+			let page = (cox.route.query && cox.route.query.page) ? parseInt(cox.route.query.page) : 1;
 			let params = {
 				field: 'srl,category_srl,json,title,regdate',
 				order: 'regdate',
 				sort: 'desc',
-				app: cox.store.state.env.api.app_srl,
-				size: cox.store.state.env.api.size,
-				page: 1,
+				page,
 				ext_field: 'category_name',
 			};
+			if (cox.store.state.env.api.app_srl) params.app = cox.store.state.env.api.app_srl;
+			if (cox.store.state.env.api.size) params.size = cox.store.state.env.api.size;
 
 			let res = await cox.$axios.$get('/articles' + util.serialize(params, true));
 			if (!res.success) throw res.message;
@@ -43,7 +61,8 @@ export default {
 				params,
 				total: res.data.total,
 				index: res.data.index,
-				page: 1,
+				page: params.page,
+				size: params.size,
 				loading: false,
 				error: null,
 			};
@@ -56,7 +75,9 @@ export default {
 	methods: {
 		async onChangePage(page)
 		{
+			this.$router.push(`${this.$route.path}${page > 1 ? `?page=${page}` : ''}`);
 			this.params.page = page;
+
 			try
 			{
 				this.loading = true;
@@ -65,7 +86,6 @@ export default {
 				this.index = res.data.index;
 				this.total = res.data.total;
 				this.loading = false;
-				// TODO: router.push() 작업하기
 			}
 			catch(e)
 			{

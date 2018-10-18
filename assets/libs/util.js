@@ -1,3 +1,5 @@
+import cookieparser from 'cookieparser';
+
 /**
  * serialize
  * object to parameter
@@ -23,16 +25,57 @@ export function serialize(obj, usePrefix=false)
 
 /**
  * set cookie
+ * https://expressjs.com/en/api.html#res.cookie
  *
+ * @param {Object} response response in node
  * @param {String} key
  * @param {String} value
  * @param {Number} day
  * @param {String} path
  */
-export function set(key, value='1', day=7, path='/')
+export function setCookie(response=null, key, value='1', day=7, path='/')
 {
-	let date = new Date();
-	date.setTime(date.getTime() + day*24*60*60*1000);
-	document.cookie = `${key}=${value};expires=${date.toUTCString()};path=${path}`;
+	let time = day * 24 * 60 * 60 * 1000;
+
+	if (response && response.cookie && typeof response.cookie === 'function')
+	{
+		response.cookie(key, value, { path, expires: new Date(Date.now() + time) });
+	}
+	else if (document)
+	{
+		let date = new Date();
+		date.setTime(date.getTime() + time);
+		document.cookie = `${key}=${value};expires=${date.toUTCString()};path=${path}`;
+	}
+	else
+	{
+		console.error('failed set cookie');
+	}
 }
 
+/**
+ * set cookie
+ *
+ */
+export function getCookie(req, key)
+{
+	try
+	{
+		if (req && req.headers.cookie)
+		{
+			let parsed = cookieparser.parse(req.headers.cookie);
+			return parsed[key] || null;
+		}
+		else if (document)
+		{
+			let value = "; " + document.cookie;
+			let parts = value.split(`; ${key}=`);
+			if (parts.length === 2) return parts.pop().split(';').shift();
+		}
+		return null;
+	}
+	catch(e)
+	{
+		return null;
+	}
+}

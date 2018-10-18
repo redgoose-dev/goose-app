@@ -26,3 +26,7 @@ pre,
 samp {
 	font-family: $font-console;
 }
+
+@import "./articles";
+@import "./article";
+@import "./nav-paginate";

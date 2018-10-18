@@ -61,11 +61,6 @@ export default {
 			return { error: (typeof e === 'string') ? e : 'Service error' };
 		}
 	},
-	methods: {
-		async onChangePage(page)
-		{
-			this.params.page = page;
-		}
-	}
+	methods: {}
 }
 </script>

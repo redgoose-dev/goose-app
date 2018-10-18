@@ -29,31 +29,6 @@
 		<h1>no item</h1>
 	</article>
 
-	<div class="nav-paginate">
-		<div class="nav-paginate__mobile">
-			<nav-paginate
-				v-if="!!total"
-				v-model="page"
-				:total="total"
-				:size="size"
-				:pageRange="2"
-				:firstLastButton="false"
-				:hidePrevNext="true"
-				@input="onChangePage"/>
-		</div>
-		<div class="nav-paginate__desktop">
-			<nav-paginate
-				v-if="!!total"
-				v-model="page"
-				:total="total"
-				:size="size"
-				:page-range="8"
-				:firstLastButton="false"
-				:hidePrevNext="true"
-				@input="onChangePage"/>
-		</div>
-	</div>
-
 	<div v-if="loading" class="loading">
 		<loading :show="true"/>
 	</div>
@@ -66,21 +41,12 @@ import * as datasets from '~/assets/libs/datasets';
 
 export default {
 	components: {
-		'nav-paginate': () => import('~/components/navigation/paginate'),
 		'loading': () => import('~/components/loading'),
 	},
 	props: {
 		index: { type: Array, default: [] },
-		total: { type: Number, default: 0 },
 		loading: { type: Boolean, default: false },
 		error: { type: String, default: null },
-		size: { type: Number, default: 24 },
-	},
-	data()
-	{
-		return {
-			page: 1,
-		}
 	},
 	computed: {
 		computedIndex()
@@ -101,11 +67,6 @@ export default {
 		randomNumber(min, max)
 		{
 			return Math.floor(Math.random() * (max - min + 1)) + min;
-		},
-		onChangePage(page)
-		{
-			// push event parent component
-			this.$emit('changePage', page);
 		},
 	}
 }

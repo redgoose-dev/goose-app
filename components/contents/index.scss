@@ -187,24 +187,6 @@
 	}
 }
 
-.nav-paginate {
-	margin: 40px 0 0;
-	&__mobile {
-		display: block;
-	}
-	&__desktop {
-		display: none;
-	}
-	@include responsive(tablet) {
-		&__mobile {
-			display: none;
-		}
-		&__desktop {
-			display: block;
-		}
-	}
-}
-
 .loading {
 	position: absolute;
 	left: 0;

@@ -4,7 +4,9 @@
 		<h1>{{fields.title}}</h1>
 		<p>
 			<span>{{fields.nest}}{{fields.category && ` / ${fields.category}`}}</span>
+			<span>Hit:{{fields.hit}}</span>
 			<span>{{fields.regdate}}</span>
+
 		</p>
 	</header>
 
@@ -22,12 +24,11 @@
 		</nuxt-link>
 		<button
 			type="button"
-			id="button_like"
 			data-srl="11"
 			class="like"
 			@click="onClickStar"
-			:class="[ !!false && 'on' ]"
-			:disabled="!!false">
+			:class="[ !!fields.selectedStar && 'on' ]"
+			:disabled="!!fields.selectedStar">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="129.184 102.606 25.632 23.517">
 				<path d="M13,24.123l-1.858-1.692C4.542,16.446.184,12.5.184,7.655A6.981,6.981,0,0,1,7.233.606,7.673,7.673,0,0,1,13,3.285,7.676,7.676,0,0,1,18.767.606a6.981,6.981,0,0,1,7.049,7.049c0,4.844-4.358,8.791-10.958,14.789Z" transform="translate(129 102)"></path>
 			</svg>
@@ -40,7 +41,6 @@
 </div>
 </template>
 
-<style src="./_srl.scss" lang="scss"></style>
 <script>
 import marked from 'marked';
 import * as util from '~/assets/libs/util';
@@ -56,21 +56,17 @@ export default {
 	{
 		const { req, res } = cox;
 		let srl = cox.params.srl;
+		let checkStar = util.getCookie(req || null, `redgoose-like-${srl}`);
+		let checkHit = util.getCookie(req || null, `redgoose-hit-${srl}`);
 
-		if (req)
+		// if cookie has hit, hit +1
+		if (!checkHit)
 		{
-			// TODO: 여기부터 시작..
-			// TODO: 라이브러리로 합쳐야함
-			// TODO: https://expressjs.com/en/api.html#res.cookie
-			res.cookie(`redgoose-hit-${srl}`, 1, { path: '/' });
-		}
-		else
-		{
-			// client
+			util.setCookie(res || null, `redgoose-hit-${srl}`, 1);
 		}
 
 		let params = {
-			hit: 0, // TODO: 쿠키에 따라 1로 바꿔야함
+			hit: checkHit ? 0 : 1,
 			ext_field: 'category_name,nest_name',
 		};
 		try
@@ -81,6 +77,7 @@ export default {
 				data: {
 					...res.data,
 					content: marked(res.data.content),
+					selectedStar: !!checkStar,
 				},
 				beforePath: '/',
 				error: null,
@@ -101,7 +98,9 @@ export default {
 				category: this.data.category_name,
 				regdate: datasets.getFormatDate(this.data.regdate, false),
 				body: this.data.content,
+				hit: parseInt(this.data.hit || 0),
 				star: parseInt(this.data.star || 0),
+				selectedStar: !!this.data.selectedStar,
 			};
 		}
 	},
@@ -119,9 +118,22 @@ export default {
 		this.showBody = true;
 	},
 	methods: {
-		onClickStar(e)
+		async onClickStar(e)
 		{
-			console.log('on click star');
+			this.data.selectedStar = true;
+			try
+			{
+				let srl = parseInt(this.data.srl);
+				let res = await this.$axios.$get(`/articles/${srl}/update?type=star`);
+				if (!res.success) throw 'Failed update';
+				this.data.star = res.data.star;
+				util.setCookie(res || null, `redgoose-like-${srl}`, 1);
+			}
+			catch(e)
+			{
+				alert('Failed update like');
+				this.data.selectedStar = false;
+			}
 		},
 		filteringContentBody(body)
 		{
