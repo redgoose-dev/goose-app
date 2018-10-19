@@ -11,13 +11,21 @@ module.exports = {
 			color: '#42BA78',
 			failedColor: '#f00',
 			height: '2px',
-		}
+		},
+		app_srl: 8,
+		intro: {
+			newest: {
+				size: 24,
+				pagination: true,
+			},
+		},
+		index: {
+			size: 24,
+		},
 	},
 	api: {
 		url: 'https://goose.redgoose.me',
 		token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZ29vc2UucmVkZ29vc2UubWUiLCJqdGkiOiI3YmNkZWZnaGlqa0Vtbm9SIiwiaWF0IjoxNTM0MzI1MjQwLCJkYXRhIjp7InR5cGUiOiJhbm9ueW1vdXMifX0.ZIBynqxpjjYOwrFVQ3854qhVIP4zICrOKQbAgLCsD0g',
-		app_srl: 8,
-		size: 24,
 	},
 	navigation: [
 		{ key: 'development', label: 'Development', url: '/articles/development' },

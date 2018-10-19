@@ -4,7 +4,7 @@
 		<h1>Newest articles</h1>
 	</header>
 	<items-index :index="index" :loading="loading" :error="error" class="index__body"/>
-	<div class="nav-paginate">
+	<div v-if="usePagination" class="nav-paginate">
 		<div class="nav-paginate__mobile">
 			<nav-paginate
 				v-if="!!total"
@@ -44,16 +44,17 @@ export default {
 	{
 		try
 		{
+			const { state } = cox.store;
 			let page = (cox.route.query && cox.route.query.page) ? parseInt(cox.route.query.page) : 1;
 			let params = {
-				field: 'srl,category_srl,json,title,regdate',
+				field: 'srl,nest_srl,json,title,regdate',
 				order: 'regdate',
 				sort: 'desc',
 				page,
-				ext_field: 'category_name',
+				ext_field: 'nest_name',
 			};
-			if (cox.store.state.env.api.app_srl) params.app = cox.store.state.env.api.app_srl;
-			if (cox.store.state.env.api.size) params.size = cox.store.state.env.api.size;
+			if (state.env.app.app_srl) params.app = state.env.app.app_srl;
+			if (state.env.app.intro.newest.size) params.size = state.env.app.intro.newest.size;
 
 			let res = await cox.$axios.$get('/articles' + util.serialize(params, true));
 			if (!res.success) throw res.message;
@@ -71,6 +72,19 @@ export default {
 		{
 			return { error: (typeof e === 'string') ? e : 'Service error' };
 		}
+	},
+	computed: {
+		usePagination()
+		{
+			try
+			{
+				return !!this.$store.state.env.app.intro.newest.pagination;
+			}
+			catch(e)
+			{
+				return false;
+			}
+		},
 	},
 	methods: {
 		async onChangePage(page)

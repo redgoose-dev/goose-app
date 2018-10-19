@@ -4,7 +4,7 @@ module.exports = {
 	mode: 'universal', // spa,universal
 
 	head: {
-		title: process.env.APP_NAME,
+		title: env.app.name,
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },

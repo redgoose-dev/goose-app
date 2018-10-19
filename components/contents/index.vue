@@ -16,7 +16,8 @@
 					<strong>{{item.title}}</strong>
 					<p>
 						<span>{{item.date}}</span>
-						<span>{{item.categoryName}}</span>
+						<span v-if="item.nestName">{{item.nestName}}</span>
+						<span v-if="item.categoryName">{{item.categoryName}}</span>
 					</p>
 				</div>
 			</nuxt-link>
@@ -51,14 +52,16 @@ export default {
 		computedIndex()
 		{
 			return this.index.map((o) => {
-				return {
+				let result = {
 					srl: o.srl,
 					url: `/article/${o.srl}`,
 					title: o.title,
 					date: datasets.getFormatDate(o.regdate, false),
-					categoryName: o.category_name,
 					image: (o.json && o.json.thumbnail && o.json.thumbnail.path) ? `${this.$store.state.env.api.url}/${o.json.thumbnail.path}` : null,
 				};
+				if (o.category_name) result.categoryName = o.category_name;
+				if (o.nest_name) result.nestName = o.nest_name;
+				return result;
 			});
 		},
 	},
