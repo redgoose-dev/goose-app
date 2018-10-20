@@ -74,7 +74,11 @@ export default {
 		}
 		catch(e)
 		{
-			return { error: (typeof e === 'string') ? e : 'Service error' };
+			return {
+				error: (typeof e === 'string') ? e : 'Service error',
+				index: null,
+				total: 0,
+			};
 		}
 	},
 	computed: {
@@ -103,13 +107,16 @@ export default {
 				if (!res.success) throw res.message;
 				this.index = res.data.index;
 				this.total = res.data.total;
+				this.error = null;
 				await util.sleep(100);
 				this.loading = false;
 			}
 			catch(e)
 			{
 				this.loading = false;
-				return { error: (typeof e === 'string') ? e : 'Service error' };
+				this.error = (typeof e === 'string') ? e : 'Service error';
+				this.index = null;
+				this.total = 0;
 			}
 		}
 	}

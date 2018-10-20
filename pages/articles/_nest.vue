@@ -171,8 +171,13 @@ export default {
 	methods: {
 		async onChangePage(page)
 		{
-			this.$router.push(`${this.$route.path}${page > 1 ? `?page=${page}` : ''}`);
 			this.params.page = page;
+
+			// change route
+			let paramsForRoute = {};
+			if (this.params.category) paramsForRoute.category = this.params.category;
+			if (page > 1) paramsForRoute.page = page;
+			this.$router.push(`${this.$route.path}${util.serialize(paramsForRoute, true)}`);
 
 			try
 			{
@@ -181,22 +186,61 @@ export default {
 				if (!res.success) throw res.message;
 				this.index = res.data.index;
 				this.total = res.data.total;
+				this.error = null;
 				await util.sleep(100);
 				this.loading = false;
 			}
 			catch(e)
 			{
 				this.loading = false;
-				return { error: (typeof e === 'string') ? e : 'Service error' };
+				this.index = null;
+				this.total = 0;
+				this.error = (typeof e === 'string') ? e : 'Service error';
 			}
 		},
 		async onClickCategoryItem(e)
 		{
 			e.preventDefault();
-			let srl = e.currentTarget.dataset.srl || null;
+			if (this.loading) return;
 
-			console.log('on click category item', srl);
-		}
+			// set srl
+			let srl = e.currentTarget.dataset.srl ? parseInt(e.currentTarget.dataset.srl) : null;
+			if (srl)
+			{
+				this.params.category = srl;
+			}
+			else if (this.params.category)
+			{
+				delete this.params.category;
+			}
+
+			// change status
+			this.loading = true;
+			this.category_srl = srl;
+			this.page = 1;
+			this.params.page = 1;
+
+			// change route
+			this.$router.push(`${this.$route.path}${util.serialize(srl ? { category: srl } : null, true)}`);
+
+			try
+			{
+				let res = await this.$axios.$get('/articles' + util.serialize(this.params, true));
+				if (!res.success) throw res.message;
+				this.index = res.data.index;
+				this.total = res.data.total;
+				this.error = null;
+				await util.sleep(100);
+				this.loading = false;
+			}
+			catch(e)
+			{
+				this.loading = false;
+				this.index = null;
+				this.total = 0;
+				this.error = (typeof e === 'string') ? e : 'Service error';
+			}
+		},
 	}
 }
 </script>

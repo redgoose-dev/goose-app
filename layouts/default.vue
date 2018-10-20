@@ -39,11 +39,16 @@
 				@click="onClickDropdown"
 				class="header-search dropdown-content"
 				:class="[ showSearchForm && 'active' ]">
-				<form action="/search" method="get" @submit="onSubmitSearchKeyword">
+				<form action="/search" method="get">
 					<fieldset>
 						<legend>search keyword form</legend>
 						<span>
-							<input type="text" name="q" placeholder="Please search keyword" value="">
+							<input
+								ref="searchKeyword"
+								type="text"
+								name="q"
+								placeholder="Please search keyword"
+								:value="searchKeyword">
 							<button type="reset" title="clear search keyword">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
 									<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" fill="currentColor"/>
@@ -77,6 +82,17 @@
 import * as util from '~/assets/libs/util';
 
 export default {
+	data()
+	{
+		// update search keyword
+		this.$store.commit('updateSearchKeyword', (this.$route.query && this.$route.query.q) ? this.$route.query.q : '');
+
+		return {
+			showNavigation: false,
+			showSearchForm: false,
+			copyright: this.$store.state.env.app.copyright,
+		};
+	},
 	computed: {
 		navigation()
 		{
@@ -92,14 +108,10 @@ export default {
 				};
 			});
 		},
-	},
-	data()
-	{
-		return {
-			showNavigation: false,
-			showSearchForm: false,
-			copyright: this.$store.state.env.app.copyright,
-		};
+		searchKeyword()
+		{
+			return this.$store.state.layout.searchKeyword;
+		}
 	},
 	mounted()
 	{
@@ -128,6 +140,10 @@ export default {
 			e.stopPropagation();
 			this.showNavigation = false;
 			this.showSearchForm = !this.showSearchForm;
+			if (this.showSearchForm)
+			{
+				this.$refs.searchKeyword.focus();
+			}
 		},
 		onClickWindowForHeaderDropdown()
 		{
@@ -143,11 +159,6 @@ export default {
 			e.preventDefault();
 			this.$router.push(e.currentTarget.getAttribute('href'));
 			this.onClickWindowForHeaderDropdown();
-		},
-		onSubmitSearchKeyword(e)
-		{
-			console.log('onSubmitSearchKeyword');
-			e.preventDefault();
 		},
 	}
 }

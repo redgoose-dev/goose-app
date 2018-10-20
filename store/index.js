@@ -1,6 +1,9 @@
 export const state = () => ({
 	env: null,
 	preference: {},
+	layout: {
+		searchKeyword: '',
+	},
 });
 
 export const actions = {
@@ -36,5 +39,9 @@ export const mutations = {
 			...state.preference,
 			...value,
 		};
-	}
+	},
+	updateSearchKeyword(state, value)
+	{
+		state.layout.searchKeyword = value;
+	},
 };

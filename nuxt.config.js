@@ -43,9 +43,14 @@ module.exports = {
 	modules: [
 		'@nuxtjs/axios'
 	],
+
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 		baseURL: env.api.url,
+	},
+
+	router: {
+		middleware: 'hook',
 	},
 
 	build: {

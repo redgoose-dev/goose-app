@@ -34,6 +34,15 @@ module.exports = {
 				star: true,
 			},
 		},
+		search: {
+			size: 24,
+			showMeta: {
+				date: true,
+				nestName: true,
+				hit: false,
+				star: false,
+			},
+		},
 	},
 	api: {
 		url: 'https://goose.redgoose.me',
