@@ -17,9 +17,14 @@
 					class="header-navigation dropdown-content"
 					:class="[ showNavigation && 'active' ]">
 					<ul>
-						<li v-for="(o,k) in navigation">
+						<li v-for="(o,k) in navigation" :class="[ o.active && 'active' ]">
 							<a v-if="o.external" :href="o.url" :target="o.target">{{o.label}}</a>
-							<a v-else :href="o.url" @click="onClickNavigationMenu">{{o.label}}</a>
+							<a
+								v-else
+								:href="o.url"
+								@click="onClickNavigationMenu">
+								{{o.label}}
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -75,6 +80,7 @@ export default {
 	computed: {
 		navigation()
 		{
+			let exp = new RegExp(`^${this.$route.path}`);
 			return this.$store.state.env.navigation.map((o) => {
 				return {
 					key: o.key,
@@ -82,7 +88,7 @@ export default {
 					url: o.url,
 					target: o.target,
 					external: /^http/.test(o.url),
-					active: false, // TODO
+					active: this.$route.params.nest && exp.test(o.url),
 				};
 			});
 		},

@@ -4,7 +4,7 @@
 		<h1>Newest articles</h1>
 	</header>
 	<items-index :index="index" :loading="loading" :error="error" class="index__body"/>
-	<div v-if="usePagination" class="nav-paginate">
+	<nav v-if="usePagination" class="nav-paginate">
 		<div class="nav-paginate__mobile">
 			<nav-paginate
 				v-if="!!total"
@@ -27,7 +27,7 @@
 				:hidePrevNext="true"
 				@input="onChangePage"/>
 		</div>
-	</div>
+	</nav>
 </article>
 </template>
 
@@ -47,14 +47,18 @@ export default {
 			const { state } = cox.store;
 			let page = (cox.route.query && cox.route.query.page) ? parseInt(cox.route.query.page) : 1;
 			let params = {
-				field: 'srl,nest_srl,json,title,regdate',
+				field: 'srl,nest_srl,json,title',
 				order: 'regdate',
 				sort: 'desc',
 				page,
-				ext_field: 'nest_name',
+				ext_field: '',
 			};
 			if (state.env.app.app_srl) params.app = state.env.app.app_srl;
 			if (state.env.app.intro.newest.size) params.size = state.env.app.intro.newest.size;
+			if (state.env.app.intro.newest.showMeta.nestName) params.ext_field += 'nest_name';
+			if (state.env.app.intro.newest.showMeta.date) params.field += ',regdate';
+			if (state.env.app.intro.newest.showMeta.hit) params.field += ',hit';
+			if (state.env.app.intro.newest.showMeta.star) params.field += ',star';
 
 			let res = await cox.$axios.$get('/articles' + util.serialize(params, true));
 			if (!res.success) throw res.message;

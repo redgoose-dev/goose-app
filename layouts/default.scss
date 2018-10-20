@@ -183,9 +183,10 @@
 		li {
 			position: relative;
 			width: 50%;
-			&.on {
+			&.active {
 				a {
 					text-decoration: underline;
+					cursor: default;
 				}
 			}
 		}

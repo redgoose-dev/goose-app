@@ -17,10 +17,22 @@ module.exports = {
 			newest: {
 				size: 24,
 				pagination: true,
+				showMeta: {
+					date: true,
+					nestName: true,
+					hit: false,
+					star: false,
+				},
 			},
 		},
 		index: {
 			size: 24,
+			showMeta: {
+				date: true,
+				categoryName: true,
+				hit: false,
+				star: true,
+			},
 		},
 	},
 	api: {
@@ -28,9 +40,11 @@ module.exports = {
 		token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvZ29vc2UucmVkZ29vc2UubWUiLCJqdGkiOiI3YmNkZWZnaGlqa0Vtbm9SIiwiaWF0IjoxNTM0MzI1MjQwLCJkYXRhIjp7InR5cGUiOiJhbm9ueW1vdXMifX0.ZIBynqxpjjYOwrFVQ3854qhVIP4zICrOKQbAgLCsD0g',
 	},
 	navigation: [
-		{ key: 'development', label: 'Development', url: '/articles/development' },
-		{ key: '3d', label: '3D', url: '/articles/3d' },
-		{ key: 'review', label: 'Review', url: '/articles/review' },
+		{ key: 'news', label: 'News', url: '/articles/demo-news' },
+		{ key: 'visual', label: 'Visual', url: '/articles/demo-visual' },
+		{ key: 'fashion', label: 'Fashion', url: '/articles/demo-fashion' },
+		{ key: 'review', label: 'Review', url: '/articles/demo-review' },
+		{ key: 'note', label: 'Note', url: '/articles/demo-note' },
 		{ key: 'redgoose', label: 'redgoose.me', url: 'https://redgoose.me', target: '_blank' },
 	],
 };

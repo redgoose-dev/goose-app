@@ -13,14 +13,13 @@
 	<div v-html="fields.body" class="article__content" :class="[ showBody && 'article__content--show' ]"></div>
 
 	<nav class="article__nav">
-		<nuxt-link :to="beforePath" class="list">
+		<nuxt-link :to="beforePath" title="back" class="list">
 			<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12">
 				<g fill="none" fill-rule="evenodd">
 					<path fill="#000" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"/>
 					<path d="M-8-6h24v24H-8z"/>
 				</g>
 			</svg>
-			<em>back</em>
 		</nuxt-link>
 		<button
 			type="button"

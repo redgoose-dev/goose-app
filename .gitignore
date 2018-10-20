@@ -5,3 +5,4 @@ dist/
 
 .DS_Store
 env.config.js
+static/robots.txt
