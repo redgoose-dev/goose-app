@@ -13,6 +13,11 @@ module.exports = {
 			height: '2px',
 		},
 		app_srl: 8,
+		header: {
+			bgColor: 'rgba(200,200,100,1)',
+			activeBgColor: 'rgba(0,0,0,.2)',
+			fillColor: 'rgba(255,0,0,1)',
+		},
 		intro: {
 			newest: {
 				size: 24,
@@ -31,7 +36,7 @@ module.exports = {
 				date: true,
 				categoryName: true,
 				hit: false,
-				star: true,
+				star: false,
 			},
 		},
 		search: {

@@ -2,7 +2,9 @@
 node_modules/
 .nuxt/
 dist/
+config/
 
 .DS_Store
-env.config.js
 static/robots.txt
+pages/page/*
+static/page/*

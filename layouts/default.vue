@@ -39,7 +39,7 @@
 				@click="onClickDropdown"
 				class="header-search dropdown-content"
 				:class="[ showSearchForm && 'active' ]">
-				<form action="/search" method="get">
+				<form action="/search" method="get" @submit="onSubmitSearchKeyword">
 					<fieldset>
 						<legend>search keyword form</legend>
 						<span>
@@ -111,7 +111,7 @@ export default {
 		searchKeyword()
 		{
 			return this.$store.state.layout.searchKeyword;
-		}
+		},
 	},
 	mounted()
 	{
@@ -159,6 +159,15 @@ export default {
 			e.preventDefault();
 			this.$router.push(e.currentTarget.getAttribute('href'));
 			this.onClickWindowForHeaderDropdown();
+		},
+		onSubmitSearchKeyword(e)
+		{
+			if (e.target.q.value && e.target.q.value.length < 2)
+			{
+				alert('Please input at least 3 characters');
+				e.target.q.focus();
+				e.preventDefault();
+			}
 		},
 	}
 }
