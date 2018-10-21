@@ -1,8 +1,5 @@
-// color
-$color-text-base: #222;
-$color-key: #b31f37;
-$color-bg: #fafbfc;
-
+@import "../../example-config/env";
+@import "../../../config/env";
 
 // size
 $size-header-height-mobile: 50px;

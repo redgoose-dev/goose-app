@@ -7,11 +7,16 @@ case "$1" in
 		#chmod 707 ./config
 
 		# copy env files
-		cp ./assets/config/env.js ./config/env.js
-		cp ./assets/config/env.scss ./config/env.scss
+		cp ./assets/example-config/env.js ./config/env.js
+		cp ./assets/example-config/env.scss ./config/env.scss
 		;;
+
+	remove-config)
+		rm -rf ./config
+		;;
+
 	*)
-		echo "Usage: ./script.sh {install}" >&2
+		echo "Usage: ./script.sh {install|remove-config}" >&2
 		exit 3
 		;;
 esac

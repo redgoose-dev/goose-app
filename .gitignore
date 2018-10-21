@@ -2,7 +2,7 @@
 node_modules/
 .nuxt/
 dist/
-config/
+config/*
 
 .DS_Store
 static/robots.txt
