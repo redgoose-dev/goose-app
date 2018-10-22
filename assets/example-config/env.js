@@ -22,6 +22,7 @@ module.exports = {
 			newest: {
 				size: 24,
 				pagination: true,
+				listStyle: 'card', // list style. ex)`card,thumbnail`
 				showMeta: {
 					date: true,
 					nestName: true,
@@ -32,6 +33,7 @@ module.exports = {
 		},
 		index: {
 			size: 24,
+			listStyle: 'card', // list style. ex)`card,thumbnail`
 			showMeta: {
 				date: true,
 				categoryName: true,
@@ -41,6 +43,7 @@ module.exports = {
 		},
 		search: {
 			size: 24,
+			listStyle: 'card', // list style. ex)`card,thumbnail`
 			showMeta: {
 				date: true,
 				nestName: true,
