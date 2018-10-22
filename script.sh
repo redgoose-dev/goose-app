@@ -2,16 +2,28 @@
 
 # function / install
 install() {
-	# make config dir
-	mkdir ./config
+	# make user dir
+	mkdir ./user
+	mkdir ./static/user
 
 	# copy env files
-	cp ./assets/example-config/env.js ./config/env.js
-	cp ./assets/example-config/env.scss ./config/env.scss
+	cp ./resource/env.js ./user/env.js
+	cp ./resource/env.scss ./user/env.scss
+
+	# copy image files
+	cp ./resource/ico-logo.png ./static/user/ico-logo.png
+	cp ./resource/img-error.png ./static/user/img-error.png
 
 	# install node_module
 	yarn install
 }
+
+# function / uninstall
+uninstall() {
+	rm -rf ./user/
+	rm -rf ./static/user/
+}
+
 
 # action
 case "$1" in
@@ -28,7 +40,7 @@ case "$1" in
 		fi
 		case ${yn} in
 			[Yy]* )
-				rm -rf ./config/
+				uninstall
 				rm -rf ./node_modules/
 				install
 				;;
@@ -39,7 +51,7 @@ case "$1" in
 		;;
 
 	remove-config)
-		rm -rf ./config/
+		uninstall
 		;;
 
 	*)

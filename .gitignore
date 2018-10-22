@@ -2,9 +2,10 @@
 node_modules/
 .nuxt/
 dist/
-config/*
 
 .DS_Store
 static/robots.txt
 pages/page/*
 static/page/*
+static/user/*
+user/*
