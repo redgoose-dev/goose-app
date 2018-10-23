@@ -5,6 +5,7 @@ dist/
 
 .DS_Store
 static/robots.txt
+0
 pages/page/*
 static/page/*
 static/user/*
