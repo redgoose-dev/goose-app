@@ -1,9 +1,14 @@
 <template>
 <article class="index">
 	<header class="index__header">
-		<h1>Search result: {{keyword}}</h1>
+		<h1>Search keyword: {{keyword}}</h1>
 	</header>
-	<items-index :index="index" :loading="loading" :error="error" class="index__body"/>
+	<items-index
+		:index="index"
+		:loading="loading"
+		:error="error"
+		:skin="indexSkin"
+		class="index__body"/>
 	<nav class="nav-paginate">
 		<div class="nav-paginate__mobile">
 			<nav-paginate
@@ -89,6 +94,12 @@ export default {
 				loading: false,
 			};
 		}
+	},
+	computed: {
+		indexSkin()
+		{
+			return this.$store.state.env.app.search.listStyle;
+		},
 	},
 	methods: {
 		async onChangePage(page)

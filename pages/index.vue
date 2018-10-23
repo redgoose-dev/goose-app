@@ -3,7 +3,12 @@
 	<header class="index__header">
 		<h1>Newest articles</h1>
 	</header>
-	<items-index :index="index" :loading="loading" :error="error" class="index__body"/>
+	<items-index
+		:index="index"
+		:loading="loading"
+		:error="error"
+		:skin="indexSkin"
+		class="index__body"/>
 	<nav v-if="usePagination" class="nav-paginate">
 		<div class="nav-paginate__mobile">
 			<nav-paginate
@@ -92,6 +97,10 @@ export default {
 			{
 				return false;
 			}
+		},
+		indexSkin()
+		{
+			return this.$store.state.env.app.intro.newest.listStyle;
 		},
 	},
 	methods: {

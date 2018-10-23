@@ -8,13 +8,13 @@ module.exports = {
 		locale: 'ko_KR',
 		copyright: 'Copyright 2018 redgoose. All right reserved.',
 		loading: {
-			color: '#42BA78',
+			color: '#29c37d',
 			failedColor: '#f00',
 			height: '2px',
 		},
 		app_srl: 8,
 		header: {
-			logo: '/config/ico-logo.png',
+			logo: '/user/ico-logo.png',
 			navigation: [
 				{ key: 'news', label: 'News', url: '/articles/demo-news' },
 				{ key: 'visual', label: 'Visual', url: '/articles/demo-visual' },
@@ -58,7 +58,7 @@ module.exports = {
 			},
 		},
 		error: {
-			symbol: '/config/ico-error.png',
+			symbol: '/user/img-error.png',
 			message: 'Service error',
 		},
 	},

@@ -18,6 +18,7 @@
 	&:before {
 		content: '';
 		position: absolute;
+		z-index: 2;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -63,6 +64,7 @@
 			background: transparent;
 			transition: background $dropdown-speed ease-out;
 			font-size: 0;
+			-webkit-tap-highlight-color: transparent;
 			svg {
 				position: absolute;
 				left: 50%;
@@ -121,6 +123,7 @@
 			background: transparent;
 			transition: background $dropdown-speed ease-out;
 			font-size: 0;
+			-webkit-tap-highlight-color: transparent;
 			svg {
 				position: absolute;
 				left: 50%;
@@ -212,6 +215,7 @@
 			font-family: $font-eng;
 			border-radius: 0;
 			-webkit-tap-highlight-color: transparent;
+			user-select: none;
 			&:active {
 				text-decoration: underline;
 			}
@@ -407,9 +411,9 @@
 
 // container
 .container {
-	padding: $size-header-height-mobile + 35px 0 0;
+	padding: $size-header-height-mobile + 20px 0 0;
 
 	@include responsive(tablet) {
-		padding: $size-header-height + 50px 0 0;
+		padding: $size-header-height + 35px 0 0;
 	}
 }

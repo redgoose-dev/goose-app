@@ -1,4 +1,4 @@
-const env = require('./config/env');
+const env = require('./user/env');
 
 module.exports = {
 	mode: 'universal', // spa,universal

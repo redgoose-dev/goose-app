@@ -3,7 +3,7 @@
 	<div v-if="loading" class="loading">
 		<loading :show="true"/>
 	</div>
-	<div v-else-if="!loading && (computedIndex && computedIndex.length)" class="articles">
+	<div v-else-if="!loading && (computedIndex && computedIndex.length)" class="articles" :class="[`articles--${skin}`]">
 		<div v-for="(item) in computedIndex" class="item">
 			<nuxt-link :to="`/article/${item.srl}`" class="item__wrap">
 				<figure class="item__image">
@@ -40,6 +40,7 @@ export default {
 	},
 	props: {
 		index: { type: Array, default: [] },
+		skin: { type: String, default: 'thumbnail' }, // card|thumbnail
 		loading: { type: Boolean, default: false },
 		error: { type: String, default: null },
 	},

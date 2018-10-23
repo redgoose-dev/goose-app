@@ -22,6 +22,7 @@ install() {
 uninstall() {
 	rm -rf ./user/
 	rm -rf ./static/user/
+	rm -rf ./node_modules/
 }
 
 
@@ -41,7 +42,6 @@ case "$1" in
 		case ${yn} in
 			[Yy]* )
 				uninstall
-				rm -rf ./node_modules/
 				install
 				;;
 			* )
@@ -50,12 +50,12 @@ case "$1" in
 		esac
 		;;
 
-	remove-config)
+	uninstall)
 		uninstall
 		;;
 
 	*)
-		echo "Usage: ./script.sh {install|reinstall|remove-config}" >&2
+		echo "Usage: ./script.sh {install|reinstall|uninstall}" >&2
 		exit 3
 		;;
 esac

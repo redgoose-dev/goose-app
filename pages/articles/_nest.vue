@@ -14,7 +14,12 @@
 		</nav>
 	</header>
 
-	<items-index :index="index" :loading="loading" :error="error" class="index__body"/>
+	<items-index
+		:index="index"
+		:loading="loading"
+		:error="error"
+		:skin="indexSkin"
+		class="index__body"/>
 
 	<nav v-if="usePagination && total > 0" class="nav-paginate">
 		<div class="nav-paginate__mobile">
@@ -166,6 +171,10 @@ export default {
 			{
 				return false;
 			}
+		},
+		indexSkin()
+		{
+			return this.$store.state.env.app.index.listStyle;
 		},
 	},
 	methods: {

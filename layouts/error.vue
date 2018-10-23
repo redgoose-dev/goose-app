@@ -1,10 +1,11 @@
 <template>
 <article class="error">
 	<figure class="error__image">
-		<img src="/images/img-symbol-line.png" alt="redgoose">
+		<img :src="symbol" alt="redgoose">
 	</figure>
-	<p class="error__code">{{error.statusCode}}</p>
-	<h1 class="error__message">{{error.message}}</h1>
+	<h1 class="error__title">{{message}}</h1>
+	<h2 class="error__message">{{error.message}}</h2>
+	<!--<p class="error__code">{{error.statusCode}}</p>-->
 </article>
 </template>
 
@@ -12,6 +13,16 @@
 export default {
 	props: {
 		error: {}
+	},
+	computed: {
+		symbol()
+		{
+			return this.$store.state.env.app.error.symbol;
+		},
+		message()
+		{
+			return this.$store.state.env.app.error.message;
+		}
 	},
 }
 </script>
@@ -38,11 +49,17 @@ export default {
 		font-family: $font-console;
 		line-height: 1;
 	}
+	&__title {
+		margin: 15px 0 0;
+		font-weight: 600;
+		font-size: 36px;
+		line-height: 1;
+	}
 	&__message {
-		margin: 5px 0 0;
-		font-size: 24px;
-		font-family: $font-eng;
+		margin: 10px 0 0;
+		font-size: 13px;
 		line-height: 1.25;
+		font-weight: 400;
 	}
 
 	@include responsive(tablet) {
@@ -51,6 +68,12 @@ export default {
 				width: 40vw;
 				max-width: 400px;
 			}
+		}
+		&__title {
+			font-size: 44px;
+		}
+		&__message {
+			font-size: 15px;
 		}
 	}
 }
