@@ -1,6 +1,6 @@
 # goose-app
 
-..
+...
 
 ## demo
 
