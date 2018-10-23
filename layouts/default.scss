@@ -1,0 +1,419 @@
+@import "../assets/css/libs/valiables";
+@import "../assets/css/libs/mixins";
+
+// header
+.header {
+	$dropdown-speed: 150ms;
+
+	position: fixed;
+	z-index: 10;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: $size-header-height-mobile;
+	background: $color-header-bg;
+	@supports (backdrop-filter: blur(5px)) {
+		backdrop-filter: blur(5px);
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 1px;
+		background: $color-header-line;
+		pointer-events: none;
+		transform-origin: 0 100%;
+	}
+
+	&__body {
+		display: flex;
+		justify-content: center;
+	}
+	&__logo {
+		margin: 0 auto;
+		height: $size-header-height-mobile;
+		justify-content: center;
+		box-sizing: border-box;
+		a {
+			display: flex;
+			padding: 0 12px;
+			height: 100%;
+			align-items: center;
+		}
+		img {
+			display: block;
+			height: $size-header-height-mobile - 15px;
+		}
+	}
+	&__navigation {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: $size-header-height-mobile;
+		height: $size-header-height-mobile;
+		> button {
+			display: block;
+			border: none;
+			width: 100%;
+			height: 100%;
+			outline: none;
+			background: transparent;
+			transition: background $dropdown-speed ease-out;
+			font-size: 0;
+			-webkit-tap-highlight-color: transparent;
+			svg {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				pointer-events: none;
+				transition: transform .3s ease-out;
+				&.on {
+					margin: -6px 0 0 -9px;
+				}
+				&.off {
+					margin: -7px 0 0 -7px;
+					transform: scale(0);
+				}
+			}
+			&:active {
+				background: $color-header-hover-bg;
+			}
+		}
+		> div {
+			position: relative;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity $dropdown-speed ease-out;
+		}
+		&.active {
+			> button {
+				background: $color-header-active-bg;
+				svg {
+					&.on {
+						transform: scale(0);
+					}
+					&.off {
+						transform: scale(1);
+					}
+				}
+			}
+			> div {
+				opacity: 1;
+				pointer-events: auto;
+			}
+		}
+	}
+	&__search {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: $size-header-height-mobile;
+		height: $size-header-height-mobile;
+		> button {
+			display: block;
+			border: none;
+			width: 100%;
+			height: 100%;
+			outline: none;
+			background: transparent;
+			transition: background $dropdown-speed ease-out;
+			font-size: 0;
+			-webkit-tap-highlight-color: transparent;
+			svg {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				pointer-events: none;
+				transition: transform .3s ease-out;
+				&.on {
+					margin: -9px 0 0 -9px;
+				}
+				&.off {
+					margin: -7px 0 0 -7px;
+					transform: scale(0);
+				}
+			}
+			&:active {
+				background: $color-header-hover-bg;
+			}
+		}
+		> div {
+			position: relative;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity $dropdown-speed ease-out;
+		}
+		&.active {
+			> button {
+				background: $color-header-active-bg;
+				svg {
+					&.on {
+						transform: scale(0);
+					}
+					&.off {
+						transform: scale(1);
+					}
+				}
+			}
+			> div {
+				opacity: 1;
+				pointer-events: auto;
+			}
+		}
+	}
+
+	&-navigation {
+		ul {
+			margin: 0;
+			padding: 30px 0;
+			box-sizing: border-box;
+			list-style: none;
+			position: fixed;
+			left: 0;
+			right: 0;
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			background: $color-header-bg;
+			@supports (backdrop-filter: blur(5px)) {
+				backdrop-filter: blur(5px);
+			}
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				display: block;
+				background: $color-header-active-bg;
+			}
+		}
+		li {
+			position: relative;
+			width: 50%;
+			&.active {
+				a {
+					text-decoration: underline;
+					cursor: default;
+				}
+			}
+		}
+		a {
+			display: block;
+			box-sizing: border-box;
+			padding: 10px 10px 10px 20px;
+			text-decoration: none;
+			color: $color-header-fill;
+			font-size: 15px;
+			font-weight: 600;
+			font-family: $font-eng;
+			border-radius: 0;
+			-webkit-tap-highlight-color: transparent;
+			user-select: none;
+			&:active {
+				text-decoration: underline;
+			}
+		}
+	}
+	&-search {
+		form {
+			margin: 0;
+			position: fixed;
+			left: 0;
+			right: 0;
+			padding: 0;
+			background: $color-header-bg;
+			display: flex;
+			align-items: center;
+			@supports (backdrop-filter: blur(5px)) {
+				backdrop-filter: blur(5px);
+			}
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				display: block;
+				background: $color-header-active-bg;
+			}
+		}
+		fieldset {
+			position: relative;
+			margin: 0;
+			padding: 0;
+			border: none;
+			flex: 1;
+			box-sizing: border-box;
+		}
+		legend {
+			font-size: 0;
+			width: 0;
+			height: 0;
+			margin: 0;
+			position: absolute;
+			overflow: hidden;
+		}
+		span {
+			position: relative;
+			display: block;
+			box-sizing: border-box;
+			input {
+				display: block;
+				width: 100%;
+				height: 54px;
+				box-sizing: border-box;
+				border: none;
+				background: none;
+				outline: none;
+				color: $color-header-fill;
+				padding: 0 20px;
+				font-size: 1rem;
+				&::placeholder {
+					color: $color-header-fill-blur;
+				}
+			}
+		}
+		button[type=submit] {
+			position: relative;
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: $size-header-height-mobile;
+			height: 54px;
+			background: none;
+			border: none;
+			font-size: 0;
+			box-sizing: border-box;
+			outline: none;
+			cursor: pointer;
+			&:active {
+				background: $color-header-active-more-bg;
+			}
+		}
+	}
+
+	@include responsive(tablet) {
+		height: $size-header-height;
+		display: flex;
+		&__body {}
+		&__logo {
+			box-sizing: border-box;
+			a {
+				padding: 0 15px 0 30px;
+				box-sizing: border-box;
+			}
+			img {
+				height: $size-header-height - 15px;
+			}
+		}
+		&__navigation {
+			position: static;
+			width: auto;
+			height: auto;
+			margin: 0;
+			> button {
+				display: none;
+			}
+			> div {
+				opacity: 1;
+				pointer-events: auto;
+				transition: none;
+				position: static;
+			}
+		}
+		&__search {
+			width: $size-header-height;
+			height: $size-header-height;
+			> button {
+				cursor: pointer;
+			}
+		}
+
+		&-navigation {
+			ul {
+				position: static;
+				background: none;
+				padding: 0;
+				flex-wrap: initial;
+				&:before {
+					display: none;
+				}
+			}
+			li {
+				position: static;
+				width: auto;
+				margin: 0 -2px;
+			}
+			a {
+				display: flex;
+				align-items: center;
+				margin: 0;
+				padding: 0 18px;
+				height: $size-header-height;
+				font-size: 14px;
+				transition: background .2s ease-out;
+				box-sizing: border-box;
+				&:hover {
+					background: $color-header-hover-bg;
+				}
+				&:active {
+					text-decoration: none;
+				}
+			}
+		}
+		&-search {
+			form {
+				left: auto;
+				width: 340px;
+			}
+			span {
+				input {
+					height: 48px;
+					font-size: .9375rem;
+				}
+			}
+			button[type=submit] {
+				width: $size-header-height;
+				height: 48px;
+			}
+		}
+	}
+	@include retina() {
+		&:before {
+			transform: scaleY(.5);
+		}
+	}
+}
+
+// footer
+.footer {
+	padding: 50px 0 20px;
+	&__copyright {
+		text-align: center;
+		margin: 0;
+		font-size: 11px;
+		color: #666;
+		font-family: $font-eng;
+	}
+
+	@include responsive(tablet) {
+		padding: 80px 0 24px;
+	}
+}
+
+// container
+.container {
+	padding: $size-header-height-mobile + 20px 0 0;
+
+	@include responsive(tablet) {
+		padding: $size-header-height + 35px 0 0;
+	}
+}

@@ -1,4 +1,12 @@
+.idea/
+node_modules/
+.nuxt/
+dist/
+
 .DS_Store
-.idea
-node_modules
-*.user.*
+static/robots.txt
+0
+pages/page/*
+static/page/*
+static/user/*
+user/*
