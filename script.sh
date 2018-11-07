@@ -11,8 +11,8 @@ install() {
 	cp ./resource/env.scss ./user/env.scss
 
 	# copy image files
-	cp ./resource/ico-logo.png ./static/user/ico-logo.png
-	cp ./resource/img-error.png ./static/user/img-error.png
+	cp ./resource/ico-logo.png ./static/ico-logo.png
+	cp ./resource/img-error.png ./static/img-error.png
 
 	# install node_module
 	yarn install
@@ -21,7 +21,6 @@ install() {
 # function / uninstall
 uninstall() {
 	rm -rf ./user/
-	rm -rf ./static/user/
 	rm -rf ./node_modules/
 }
 
