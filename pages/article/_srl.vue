@@ -51,6 +51,12 @@ export default {
 	{
 		return cox.params.srl && /^\d+$/.test(cox.params.srl);
 	},
+	head()
+	{
+		return {
+			title: `${this.fields.title} on ${this.$store.state.env.app.name}`,
+		};
+	},
 	async asyncData(cox)
 	{
 		const { req, res } = cox;

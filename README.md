@@ -8,24 +8,29 @@
 https://demo.redgoose.me
 
 
-## Install and start
+## Install
 
-``` bash
-# install
-$ ./script install
+클론받고 먼저 인스톨합니다.
 
-# reinstall
-$ ./script reinstall
+```bash
+$ ./script.sh install
+```
 
-# uninstall
-$ ./script uninstall
+`user/env.js` 파일을 수정합니다.  
+특히 `api` 객체에서 `url`, `token`값은 꼭 입력해줍니다.  
+만약 host와 port를 고쳐야 한다면 `app.url` 부분을 고쳐주세요.
 
-# serve with hot reload at localhost:3000
-$ yarn run dev
+테스트를 위하여 개발서버를 돌려봅니다. 기본값 주소는 `http://localhost:3000` 입니다.
 
-# build for production and launch server
-$ yarn run build
-$ yarn start
+```bash
+yarn run dev
+```
+
+실서버에 적용시키려면 다름과 같이 빌드를 하고 start 실행해주면 됩니다.
+
+```bash
+yarn run build
+yarn start
 ```
 
 

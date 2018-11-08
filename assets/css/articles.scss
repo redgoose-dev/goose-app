@@ -4,8 +4,17 @@
 .index {
 	$self: '.index';
 
+	&__hidden-title {
+		margin: 0;
+		width: 0;
+		height: 0;
+		overflow: hidden;
+		visibility: hidden;
+		position: absolute;
+		font-size: 0;
+	}
 	&__header {
-		h1 {
+		h2 {
 			margin: 0 0 15px;
 			padding: 0 20px;
 			font-size: 24px;

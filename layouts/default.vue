@@ -2,11 +2,11 @@
 <main>
 	<header class="header">
 		<div class="header__body">
-			<h1 class="header__logo">
+			<div class="header__logo">
 				<a href="/">
 					<img :src="logo" alt="redgoose">
 				</a>
-			</h1>
+			</div>
 			<nav class="header__navigation" :class="[ showNavigation && 'active' ]">
 				<button type="button" title="toggle navigation" @click="onClickToggleNavigation" class="dropdown-button">
 					<icon-menu class="on" title="open menu"/>

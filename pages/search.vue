@@ -45,6 +45,12 @@ export default {
 		'items-index': () => import('~/components/contents/index'),
 		'nav-paginate': () => import('~/components/navigation/paginate'),
 	},
+	head()
+	{
+		return {
+			title: `Search result ${this.keyword} on ${this.$store.state.env.app.name}`,
+		};
+	},
 	async asyncData(cox)
 	{
 		const { route, store } = cox;

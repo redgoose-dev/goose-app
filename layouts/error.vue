@@ -1,12 +1,12 @@
 <template>
-<article class="error">
+<div class="error">
 	<figure class="error__image">
 		<img :src="symbol" alt="redgoose">
 	</figure>
 	<h1 class="error__title">{{message}}</h1>
 	<h2 class="error__message">{{error.message}}</h2>
 	<!--<p class="error__code">{{error.statusCode}}</p>-->
-</article>
+</div>
 </template>
 
 <script>
