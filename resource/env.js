@@ -5,6 +5,7 @@ module.exports = {
 		keywords: 'development,graphics,review',
 		url: 'http://localhost:3000',
 		author: 'redgoose',
+		lang: 'ko',
 		locale: 'ko_KR',
 		copyright: 'Copyright 2018 redgoose. All right reserved.',
 		loading: {
