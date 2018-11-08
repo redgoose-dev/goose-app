@@ -1,7 +1,7 @@
 <template>
-<article class="index">
+<article class="index" :class="[ `index--skin-${indexSkin}` ]">
 	<header v-if="title" class="index__header">
-		<h1>{{title}}</h1>
+		<h1 class="index__title">{{title}}</h1>
 		<nav v-if="computedCategories && computedCategories.length">
 			<ul>
 				<li v-for="(o,k) in computedCategories" :key="k" :class="[o.active && 'on']">

@@ -2,7 +2,7 @@
 <article class="index">
 	<h1 class="index__hidden-title">{{title}}</h1>
 	<header class="index__header">
-		<h2>Newest articles</h2>
+		<h2 class="index__title">Newest articles</h2>
 	</header>
 	<items-index
 		:index="index"

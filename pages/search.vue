@@ -1,7 +1,7 @@
 <template>
 <article class="index">
 	<header class="index__header">
-		<h1>Search keyword: {{keyword}}</h1>
+		<h1 class="index__title">Search keyword: {{keyword}}</h1>
 	</header>
 	<items-index
 		:index="index"

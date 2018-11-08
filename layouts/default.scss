@@ -65,7 +65,7 @@
 			transition: background $dropdown-speed ease-out;
 			font-size: 0;
 			-webkit-tap-highlight-color: transparent;
-			svg {
+			> i {
 				position: absolute;
 				left: 50%;
 				top: 50%;
@@ -92,7 +92,7 @@
 		&.active {
 			> button {
 				background: $color-header-active-bg;
-				svg {
+				> i {
 					&.on {
 						transform: scale(0);
 					}
@@ -124,7 +124,7 @@
 			transition: background $dropdown-speed ease-out;
 			font-size: 0;
 			-webkit-tap-highlight-color: transparent;
-			svg {
+			> i {
 				position: absolute;
 				left: 50%;
 				top: 50%;
@@ -151,7 +151,7 @@
 		&.active {
 			> button {
 				background: $color-header-active-bg;
-				svg {
+				> i {
 					&.on {
 						transform: scale(0);
 					}
