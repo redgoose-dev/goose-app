@@ -5,6 +5,9 @@ module.exports = {
 
 	head: {
 		title: env.app.name,
+		htmlAttrs: {
+			lang: env.app.lang,
+		},
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },

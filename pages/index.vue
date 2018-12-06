@@ -1,7 +1,8 @@
 <template>
 <article class="index">
+	<h1 class="index__hidden-title">{{title}}</h1>
 	<header class="index__header">
-		<h1>Newest articles</h1>
+		<h2 class="index__title">Newest articles</h2>
 	</header>
 	<items-index
 		:index="index"
@@ -102,6 +103,10 @@ export default {
 		{
 			return this.$store.state.env.app.intro.newest.listStyle;
 		},
+		title()
+		{
+			return this.$store.state.env.app.name;
+		}
 	},
 	methods: {
 		async onChangePage(page)

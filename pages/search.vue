@@ -1,7 +1,7 @@
 <template>
 <article class="index">
 	<header class="index__header">
-		<h1>Search keyword: {{keyword}}</h1>
+		<h1 class="index__title">Search keyword: {{keyword}}</h1>
 	</header>
 	<items-index
 		:index="index"
@@ -44,6 +44,12 @@ export default {
 	components: {
 		'items-index': () => import('~/components/contents/index'),
 		'nav-paginate': () => import('~/components/navigation/paginate'),
+	},
+	head()
+	{
+		return {
+			title: `Search result ${this.keyword} on ${this.$store.state.env.app.name}`,
+		};
 	},
 	async asyncData(cox)
 	{

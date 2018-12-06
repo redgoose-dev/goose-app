@@ -1,10 +1,10 @@
 <template>
-<article class="index">
+<article class="index" :class="[ `index--skin-${indexSkin}` ]">
 	<header v-if="title" class="index__header">
-		<h1>{{title}}</h1>
+		<h1 class="index__title">{{title}}</h1>
 		<nav v-if="computedCategories && computedCategories.length">
 			<ul>
-				<li v-for="(o,k) in computedCategories" :class="[o.active && 'on']">
+				<li v-for="(o,k) in computedCategories" :key="k" :class="[o.active && 'on']">
 					<a :href="o.url" :data-srl="o.srl" @click="onClickCategoryItem">
 						<span>{{o.name}}</span>
 						<em>{{o.count}}</em>
@@ -60,6 +60,12 @@ export default {
 	validate(cox)
 	{
 		return cox.params.nest && /^[0-9A-Za-z_-]+$/.test(cox.params.nest);
+	},
+	head()
+	{
+		return {
+			title: `${this.title} on ${this.$store.state.env.app.name}`,
+		};
 	},
 	data()
 	{
@@ -140,7 +146,7 @@ export default {
 			{
 				let exp = new RegExp(`^${this.$route.path}`);
 				let label = null;
-				this.$store.state.env.navigation.forEach((o) => {
+				this.$store.state.env.app.header.navigation.forEach((o) => {
 					if (exp.test(o.url)) label = o.label;
 				});
 				return label || null;

@@ -4,13 +4,16 @@
 .index {
 	$self: '.index';
 
+	&__hidden-title {
+		margin: 0;
+		width: 0;
+		height: 0;
+		overflow: hidden;
+		visibility: hidden;
+		position: absolute;
+		font-size: 0;
+	}
 	&__header {
-		h1 {
-			margin: 0 0 15px;
-			padding: 0 20px;
-			font-size: 24px;
-			letter-spacing: -.5px;
-		}
 		nav {
 			margin: 0;
 			padding: 10px 20px;
@@ -56,7 +59,21 @@
 			}
 		}
 	}
+	&__title {
+		margin: 0 0 12px;
+		padding: 0 20px;
+		font-size: 24px;
+		letter-spacing: -.5px;
+	}
 	&__body {}
+
+	&--skin-thumbnail {
+		#{$self}__header {
+			nav {
+				margin-bottom: 20px;
+			}
+		}
+	}
 
 	@include responsive(tablet) {
 		padding: 0 30px;
@@ -93,6 +110,14 @@
 				}
 				em {
 					font-size: 12px;
+				}
+			}
+		}
+
+		&--skin-thumbnail {
+			#{$self}__header {
+				nav {
+					margin-bottom: 0;
 				}
 			}
 		}

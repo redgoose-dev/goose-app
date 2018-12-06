@@ -2,6 +2,7 @@
 node_modules/
 .nuxt/
 dist/
+.AppleDouble/
 
 .DS_Store
 0
