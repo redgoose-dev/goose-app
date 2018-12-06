@@ -53,8 +53,22 @@ export default {
 	},
 	head()
 	{
+		const { fields, $store } = this;
+		let title = `${fields.title} on ${$store.state.env.app.name}`;
+		let meta = [
+			{ hid: 'og:title', property: 'og:title', content: title },
+		];
+		if (fields.coverImage)
+		{
+			meta.push({
+				hid: 'og:image',
+				property: 'og:image',
+				content: fields.coverImage
+			});
+		}
 		return {
-			title: `${this.fields.title} on ${this.$store.state.env.app.name}`,
+			title: title,
+			meta,
 		};
 	},
 	async asyncData(cox)
@@ -97,15 +111,17 @@ export default {
 	computed: {
 		fields()
 		{
+			const { $store, data } = this;
 			return {
-				title: this.data.title,
-				nest: this.data.nest_name,
-				category: this.data.category_name,
-				regdate: datasets.getFormatDate(this.data.regdate, false),
-				body: this.data.content,
-				hit: parseInt(this.data.hit || 0),
-				star: parseInt(this.data.star || 0),
-				selectedStar: !!this.data.selectedStar,
+				title: data.title,
+				nest: data.nest_name,
+				category: data.category_name,
+				regdate: datasets.getFormatDate(data.regdate, false),
+				body: data.content,
+				hit: parseInt(data.hit || 0),
+				star: parseInt(data.star || 0),
+				selectedStar: !!data.selectedStar,
+				coverImage: (data.json && data.json.thumbnail && data.json.thumbnail.path) ? $store.state.env.api.url + '/' + data.json.thumbnail.path : null,
 			};
 		}
 	},

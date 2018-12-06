@@ -81,6 +81,19 @@ export default {
 		'icon-search': () => import('@/components/icons/search'),
 		'icon-close': () => import('@/components/icons/close'),
 	},
+	head()
+	{
+		const { $store, $route } = this;
+		let currentUrl = `${$store.state.env.app.url}${$route.path}`;
+		return {
+			meta: [
+				{ hid: 'og:url', property: 'og:url', content: currentUrl },
+			],
+			link: [
+				{ hid: 'canonical', rel: 'canonical', href: currentUrl },
+			],
+		};
+	},
 	data()
 	{
 		// update search keyword
@@ -120,6 +133,9 @@ export default {
 	{
 		util.initCustomEvent();
 		window.on('click.headerDropdown', this.onClickWindowForHeaderDropdown);
+
+		//document.querySelector('body').setAttribute('')
+		document.body.addEventListener('touchstart', function(){}, false);
 
 		try
 		{

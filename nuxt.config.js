@@ -14,15 +14,18 @@ module.exports = {
 			{ hid: 'description', name: 'description', content: env.app.description },
 			{ name: 'author', content: env.app.author },
 			{ name: 'keywords', content: env.app.keywords },
-			{ property: 'og:site_name', content: env.app.name },
-			{ property: 'og:url', content: env.app.url },
-			{ property: 'og:locale', content: env.app.locale },
-			{ property: 'og:type', content: 'website' },
+			{ hid: 'og:site_name', property: 'og:site_name', content: env.app.name },
+			{ hid: 'og:url', property: 'og:url', content: env.app.url },
+			{ hid: 'og:locale', property: 'og:locale', content: env.app.locale },
+			{ hid: 'og:type', property: 'og:type', content: 'website' },
+			{ hid: 'og:title', property: 'og:title', content: env.app.name },
+			{ hid: 'og:description', property: 'og:description', content: env.app.description },
+			{ hid: 'og:image', property: 'og:image', content: '/og-image.jpg' },
 		],
 		link: [
-			{ rel: 'canonical', href: env.app.url },
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-		]
+			{ hid: 'canonical', rel: 'canonical', href: env.app.url },
+			{ hid: 'favicon', rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+		],
 	},
 
 	loading: {

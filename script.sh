@@ -13,6 +13,8 @@ install() {
 	# copy image files
 	cp ./resource/ico-logo.png ./static/ico-logo.png
 	cp ./resource/img-error.png ./static/img-error.png
+	cp ./resource/og-image.jpg ./static/og-image.jpg
+	cp ./resource/favicon.ico ./static/favicon.ico
 
 	# install node_module
 	yarn install

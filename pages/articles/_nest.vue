@@ -63,8 +63,12 @@ export default {
 	},
 	head()
 	{
+		let title = `${this.title} on ${this.$store.state.env.app.name}`;
 		return {
-			title: `${this.title} on ${this.$store.state.env.app.name}`,
+			title,
+			meta: [
+				{ hid: 'og:title', property: 'og:title', content: title },
+			],
 		};
 	},
 	data()
