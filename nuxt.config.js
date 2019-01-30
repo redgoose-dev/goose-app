@@ -60,7 +60,7 @@ module.exports = {
 	},
 
 	build: {
-		extractCSS: false,
+		extractCSS: true,
 		extend(config, ctx) {
 			//
 		}
