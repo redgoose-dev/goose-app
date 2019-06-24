@@ -17,9 +17,9 @@
 				v-model="page"
 				:total="total"
 				:size="size"
-				:pageRange="2"
-				:firstLastButton="false"
-				:hidePrevNext="true"
+				:page-range="2"
+				:first-last-button="false"
+				:hide-prev-next="true"
 				@input="onChangePage"/>
 		</div>
 		<div class="nav-paginate__desktop">
@@ -29,8 +29,8 @@
 				:total="total"
 				:size="size"
 				:page-range="8"
-				:firstLastButton="false"
-				:hidePrevNext="true"
+				:first-last-button="false"
+				:hide-prev-next="true"
 				@input="onChangePage"/>
 		</div>
 	</nav>
@@ -41,7 +41,7 @@
 import * as util from '~/assets/libs/util';
 
 export default {
-	name: 'Intro',
+	name: 'intro',
 	components: {
 		'items-index': () => import('~/components/contents/index'),
 		'nav-paginate': () => import('~/components/navigation/paginate'),
@@ -84,6 +84,7 @@ export default {
 				error: (typeof e === 'string') ? e : 'Service error',
 				index: null,
 				total: 0,
+				loading: false,
 			};
 		}
 	},
