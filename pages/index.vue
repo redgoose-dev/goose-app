@@ -1,8 +1,7 @@
 <template>
 <article class="index">
-	<h1 class="index__hidden-title">{{title}}</h1>
 	<header class="index__header">
-		<h2 class="index__title">Newest articles</h2>
+		<h1 class="index__title">Newest articles</h1>
 	</header>
 	<items-index
 		:index="index"
@@ -137,3 +136,5 @@ export default {
 	}
 }
 </script>
+
+<style src="./index.scss" lang="scss" scoped></style>

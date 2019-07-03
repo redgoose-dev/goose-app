@@ -2,7 +2,7 @@
 <article class="index" :class="[ `index--skin-${indexSkin}` ]">
 	<header v-if="title" class="index__header">
 		<h1 class="index__title">{{title}}</h1>
-		<nav v-if="computedCategories && computedCategories.length">
+		<nav v-if="computedCategories && computedCategories.length" class="index__categories">
 			<ul>
 				<li v-for="(o,k) in computedCategories" :key="k" :class="[o.active && 'on']">
 					<a :href="o.url" :data-srl="o.srl" @click="onClickCategoryItem">
@@ -90,17 +90,15 @@ export default {
 
 		// set params
 		let params = {
-			nest_id,
 			field: 'srl,category_srl,json,title',
 			order: 'srl',
 			sort: 'desc',
 			page,
-			ext_field: 'count_article',
 		};
 		if (state.env.app.app_srl) params.app = state.env.app.app_srl;
 		if (category_srl) params.category = category_srl;
 		if (state.env.app.index.size) params.size = state.env.app.index.size;
-		if (state.env.app.index.showMeta.categoryName) params.ext_field += ',category_name';
+		if (state.env.app.index.showMeta.categoryName) params.ext_field = 'category_name';
 		if (state.env.app.index.showMeta.date) params.field += ',regdate';
 		if (state.env.app.index.showMeta.hit) params.field += ',hit';
 		if (state.env.app.index.showMeta.star) params.field += ',star';
@@ -108,25 +106,58 @@ export default {
 		// get data
 		try
 		{
-			let res = await cox.$axios.$get('/articles/extend' + util.serialize(params, true));
-			if (!res.success) throw res.message;
-			delete params.nest_id;
+			let nest = null;
+			let categories = null;
+			let articles = null;
+
+			// get nest
+			nest = await cox.$axios.$get(`/nests/id/${nest_id}`);
+			if (!nest.success) throw nest.message;
+			nest = nest.data;
+
+			// get categories
+			if (!!parseInt(nest.json.useCategory))
+			{
+				try
+				{
+					categories = await cox.$axios.$get(`/categories?nest=${nest.srl}&ext_field=count_article`);
+					if (!categories.success) throw categories.message;
+					categories = categories.data.index;
+				}
+				catch (e)
+				{}
+			}
+
+			// get articles
+			params.nest = parseInt(nest.srl);
+			articles = await cox.$axios.$get(`/articles${util.serialize(params, true)}`);
+			if (articles.success)
+			{
+				articles = articles.data;
+				articles.error = null;
+			}
+			else
+			{
+				articles.index = [];
+				articles.total = 0;
+				articles.error = articles.message;
+			}
+
 			return {
 				params: {
 					...params,
-					nest: parseInt(res.data.nest.srl),
-					ext_field: 'category_name',
+					nest: parseInt(nest.srl),
 				},
 				nest_id,
 				category_srl,
-				nest: res.data.nest,
-				categories: res.data.categories,
-				index: res.data.index,
-				total: res.data.total,
+				nest,
+				categories,
+				index: articles.index,
+				total: articles.total,
 				page: params.page,
 				size: params.size,
 				loading: false,
-				error: null,
+				error: articles.error,
 			};
 		}
 		catch(e)
@@ -263,3 +294,5 @@ export default {
 	}
 }
 </script>
+
+<style src="../index.scss" lang="scss" scoped></style>

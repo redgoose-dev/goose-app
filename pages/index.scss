@@ -1,0 +1,120 @@
+@import "../assets/css/libs/valiables";
+@import "../assets/css/libs/mixins";
+
+.index {
+  $self: '.index';
+  &__title {
+    margin: 0 0 15px;
+    padding: 0 20px;
+    font-size: 24px;
+    letter-spacing: -.5px;
+    text-align: center;
+  }
+  &__categories {
+    margin: 0;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background: #e7e8eb;
+    ul {
+      margin: 0 -10px;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    li {
+      display: block;
+      &.on {
+        a {
+          color: $color-key;
+        }
+      }
+    }
+    a {
+      display: block;
+      padding: 6px 10px;
+      text-decoration: none;
+      color: #222;
+      font-size: 0;
+      &:active {
+        text-decoration: underline;
+      }
+    }
+    span {
+      font-size: 11px;
+    }
+    em {
+      font-style: normal;
+      font-size: 11px;
+      &:before {
+        content: '(';
+      }
+      &:after {
+        content: ')';
+      }
+    }
+  }
+
+  &--skin-thumbnail {
+    #{$self}__header {
+      nav {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  @include responsive(tablet) {
+    padding: 0 30px;
+    &__header {
+      margin: 0 0 15px;
+    }
+    &__title {
+      margin: 0;
+      padding: 0;
+      font-size: 36px;
+      line-height: 1.25;
+    }
+    &__categories {
+      margin: 10px 0 0;
+      padding: 0;
+      background: none;
+      ul {
+        margin: 0;
+        justify-content: center;
+      }
+      li {
+        &.on {
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      a {
+        padding: 3px 8px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      span {
+        font-size: 12px;
+      }
+      em {
+        font-size: 12px;
+      }
+    }
+    &--skin-thumbnail {
+      #{$self}__header {
+        nav {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  @include responsive(max) {
+    max-width: $size-container-base-index;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

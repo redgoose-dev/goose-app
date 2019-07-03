@@ -4,30 +4,31 @@
 // header
 .header {
 	$dropdown-speed: 150ms;
-
-	position: fixed;
-	z-index: 10;
-	left: 0;
-	right: 0;
-	top: 0;
 	height: $size-header-height-mobile;
-	background: $color-header-bg;
-	@supports (backdrop-filter: blur(5px)) {
-		backdrop-filter: blur(5px);
-	}
-	&:before {
-		content: '';
-		position: absolute;
-		z-index: 2;
+	&__wrap {
+		position: fixed;
+		z-index: 10;
 		left: 0;
 		right: 0;
-		bottom: 0;
-		height: 1px;
-		background: $color-header-line;
-		pointer-events: none;
-		transform-origin: 0 100%;
+		top: 0;
+		height: $size-header-height-mobile;
+		background: $color-header-bg;
+		@supports (backdrop-filter: blur(5px)) {
+			backdrop-filter: blur(5px);
+		}
+		&:before {
+			content: '';
+			position: absolute;
+			z-index: 2;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 1px;
+			background: $color-header-line;
+			pointer-events: none;
+			transform-origin: 0 100%;
+		}
 	}
-
 	&__body {
 		display: flex;
 		justify-content: center;
@@ -302,7 +303,15 @@
 
 	@include responsive(tablet) {
 		height: $size-header-height;
-		display: flex;
+		&__wrap {
+			height: $size-header-height;
+			display: flex;
+			@include retina() {
+				&:before {
+					transform: scaleY(.5);
+				}
+			}
+		}
 		&__body {}
 		&__logo {
 			box-sizing: border-box;
@@ -386,16 +395,11 @@
 			}
 		}
 	}
-	@include retina() {
-		&:before {
-			transform: scaleY(.5);
-		}
-	}
 }
 
 // footer
 .footer {
-	padding: 50px 0 20px;
+	padding: 40px 0 20px;
 	&__copyright {
 		text-align: center;
 		margin: 0;
@@ -405,15 +409,15 @@
 	}
 
 	@include responsive(tablet) {
-		padding: 80px 0 24px;
+		padding: 60px 0 24px;
 	}
 }
 
 // container
 .container {
-	padding: $size-header-height-mobile + 20px 0 0;
+	padding: 20px 0 0;
 
 	@include responsive(tablet) {
-		padding: $size-header-height + 40px 0 0;
+		padding: 40px 0 0;
 	}
 }

@@ -1,39 +1,39 @@
 <template>
 <article v-if="!error" class="article">
-	<header class="article__header">
-		<h1>{{fields.title}}</h1>
-		<p>
-			<span>{{fields.nest}}{{fields.category && ` / ${fields.category}`}}</span>
-			<span>Hit:{{fields.hit}}</span>
-			<span>{{fields.regdate}}</span>
+	<div class="article__wrap">
+		<header class="article__header">
+			<h1>{{fields.title}}</h1>
+			<p>
+				<span>{{fields.nest}}{{fields.category && ` / ${fields.category}`}}</span>
+				<span>Hit:{{fields.hit}}</span>
+				<span>{{fields.regdate}}</span>
 
-		</p>
-	</header>
-
-	<div v-html="fields.body" class="article__content" :class="[ showBody && 'article__content--show' ]"></div>
-
-	<nav class="article__nav">
-		<nuxt-link :to="beforePath" title="back" class="list">
-			<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12">
-				<g fill="none" fill-rule="evenodd">
-					<path fill="#000" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"/>
-					<path d="M-8-6h24v24H-8z"/>
-				</g>
-			</svg>
-		</nuxt-link>
-		<button
-			type="button"
-			data-srl="11"
-			class="like"
-			@click="onClickStar"
-			:class="[ !!fields.selectedStar && 'on' ]"
-			:disabled="!!fields.selectedStar">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="129.184 102.606 25.632 23.517">
-				<path d="M13,24.123l-1.858-1.692C4.542,16.446.184,12.5.184,7.655A6.981,6.981,0,0,1,7.233.606,7.673,7.673,0,0,1,13,3.285,7.676,7.676,0,0,1,18.767.606a6.981,6.981,0,0,1,7.049,7.049c0,4.844-4.358,8.791-10.958,14.789Z" transform="translate(129 102)"></path>
-			</svg>
-			<em>{{fields.star}}</em>
-		</button>
-	</nav>
+			</p>
+		</header>
+		<div v-html="fields.body" class="article__content"></div>
+		<nav class="article__nav">
+			<nuxt-link :to="beforePath" title="back" class="list">
+				<svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12">
+					<g fill="none" fill-rule="evenodd">
+						<path fill="#000" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"/>
+						<path d="M-8-6h24v24H-8z"/>
+					</g>
+				</svg>
+			</nuxt-link>
+			<button
+				type="button"
+				data-srl="11"
+				class="like"
+				@click="onClickStar"
+				:class="[ !!fields.selectedStar && 'on' ]"
+				:disabled="!!fields.selectedStar">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="129.184 102.606 25.632 23.517">
+					<path d="M13,24.123l-1.858-1.692C4.542,16.446.184,12.5.184,7.655A6.981,6.981,0,0,1,7.233.606,7.673,7.673,0,0,1,13,3.285,7.676,7.676,0,0,1,18.767.606a6.981,6.981,0,0,1,7.049,7.049c0,4.844-4.358,8.791-10.958,14.789Z" transform="translate(129 102)"></path>
+				</svg>
+				<em>{{fields.star}}</em>
+			</button>
+		</nav>
+	</div>
 </article>
 <div v-else>
 	.error-body
@@ -100,7 +100,6 @@ export default {
 				},
 				beforePath: '/',
 				error: null,
-				showBody: false,
 			};
 		}
 		catch(e)
@@ -132,12 +131,6 @@ export default {
 			next();
 		});
 	},
-	mounted()
-	{
-		// filtering content body
-		this.data.content = this.filteringContentBody(this.fields.body);
-		this.showBody = true;
-	},
 	methods: {
 		async onClickStar(e)
 		{
@@ -156,23 +149,8 @@ export default {
 				this.data.selectedStar = false;
 			}
 		},
-		filteringContentBody(body)
-		{
-			function wrap(elem)
-			{
-				const span = document.createElement('span');
-				span.classList.add('image');
-				elem.parentElement.insertBefore(span, elem);
-				span.appendChild(elem);
-			}
-
-			let html = document.createElement('div');
-			html.innerHTML = body;
-			let images = html.querySelectorAll('img');
-			images.forEach((img) => wrap(img));
-
-			return html.innerHTML;
-		}
 	}
 }
 </script>
+
+<style src="./_srl.scss" lang="scss"></style>

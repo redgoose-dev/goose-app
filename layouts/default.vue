@@ -1,62 +1,64 @@
 <template>
 <main>
 	<header class="header">
-		<div class="header__body">
-			<div class="header__logo">
-				<a href="/">
-					<img :src="logo" alt="redgoose">
-				</a>
+		<div class="header__wrap">
+			<div class="header__body">
+				<div class="header__logo">
+					<a href="/">
+						<img :src="logo" alt="redgoose">
+					</a>
+				</div>
+				<nav class="header__navigation" :class="[ showNavigation && 'active' ]">
+					<button type="button" title="toggle navigation" @click="onClickToggleNavigation" class="dropdown-button">
+						<icon-menu class="on" title="open menu"/>
+						<icon-close class="off" title="close menu"/>
+					</button>
+					<div
+						@click="onClickDropdown"
+						class="header-navigation dropdown-content"
+						:class="[ showNavigation && 'active' ]">
+						<ul>
+							<li v-for="(o,k) in navigation" :class="[ o.active && 'active' ]">
+								<a v-if="o.external" :href="o.url" :target="o.target">{{o.label}}</a>
+								<a
+									v-else
+									:href="o.url"
+									@click="onClickNavigationMenu">
+									{{o.label}}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
 			</div>
-			<nav class="header__navigation" :class="[ showNavigation && 'active' ]">
-				<button type="button" title="toggle navigation" @click="onClickToggleNavigation" class="dropdown-button">
-					<icon-menu class="on" title="open menu"/>
+			<div class="header__search" :class="[ showSearchForm && 'active' ]">
+				<button type="button" title="toggle search form" @click="onClickToggleSearchForm" class="dropdown-button">
+					<icon-search class="on" title="open menu"/>
 					<icon-close class="off" title="close menu"/>
 				</button>
 				<div
 					@click="onClickDropdown"
-					class="header-navigation dropdown-content"
-					:class="[ showNavigation && 'active' ]">
-					<ul>
-						<li v-for="(o,k) in navigation" :class="[ o.active && 'active' ]">
-							<a v-if="o.external" :href="o.url" :target="o.target">{{o.label}}</a>
-							<a
-								v-else
-								:href="o.url"
-								@click="onClickNavigationMenu">
-								{{o.label}}
-							</a>
-						</li>
-					</ul>
+					class="header-search dropdown-content"
+					:class="[ showSearchForm && 'active' ]">
+					<form action="/search" method="get" @submit="onSubmitSearchKeyword">
+						<fieldset>
+							<legend>search keyword form</legend>
+							<span>
+								<input
+									ref="searchKeyword"
+									type="text"
+									name="q"
+									placeholder="Please search keyword"
+									:value="searchKeyword">
+							</span>
+						</fieldset>
+						<nav>
+							<button type="submit">
+								<icon-search title="search"/>
+							</button>
+						</nav>
+					</form>
 				</div>
-			</nav>
-		</div>
-		<div class="header__search" :class="[ showSearchForm && 'active' ]">
-			<button type="button" title="toggle search form" @click="onClickToggleSearchForm" class="dropdown-button">
-				<icon-search class="on" title="open menu"/>
-				<icon-close class="off" title="close menu"/>
-			</button>
-			<div
-				@click="onClickDropdown"
-				class="header-search dropdown-content"
-				:class="[ showSearchForm && 'active' ]">
-				<form action="/search" method="get" @submit="onSubmitSearchKeyword">
-					<fieldset>
-						<legend>search keyword form</legend>
-						<span>
-							<input
-								ref="searchKeyword"
-								type="text"
-								name="q"
-								placeholder="Please search keyword"
-								:value="searchKeyword">
-						</span>
-					</fieldset>
-					<nav>
-						<button type="submit">
-							<icon-search title="search"/>
-						</button>
-					</nav>
-				</form>
 			</div>
 		</div>
 	</header>

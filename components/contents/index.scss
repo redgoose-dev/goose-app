@@ -9,7 +9,7 @@
 		overflow: hidden;
 	}
 	@include responsive(tablet) {
-		margin: 10px 0 0;
+		margin: 0;
 		&--loading {
 			min-height: 200px;
 			overflow: hidden;
