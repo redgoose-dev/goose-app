@@ -13,7 +13,6 @@
 <script>
 export default {
 	props: {
-		icon: { type: String, default: null },
 		message: { type: String, default: 'Service error' },
 	},
 }
