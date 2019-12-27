@@ -65,7 +65,7 @@ export default {
 			if (state.env.app.intro.newest.showMeta.hit) params.field += ',hit';
 			if (state.env.app.intro.newest.showMeta.star) params.field += ',star';
 
-			let res = await cox.$axios.$get('/articles' + util.serialize(params, true));
+			let res = await cox.$axios.$get('/articles/' + util.serialize(params, true));
 			if (!res.success) throw res.message;
 			return {
 				params,

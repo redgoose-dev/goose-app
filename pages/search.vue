@@ -79,7 +79,7 @@ export default {
 
 		try
 		{
-			let res = await cox.$axios.$get('/articles' + util.serialize(params, true));
+			let res = await cox.$axios.$get('/articles/' + util.serialize(params, true));
 			if (!res.success) throw res.message;
 
 			return {

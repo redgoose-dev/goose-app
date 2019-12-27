@@ -111,7 +111,7 @@ export default {
 			let articles = null;
 
 			// get nest
-			nest = await cox.$axios.$get(`/nests/id/${nest_id}`);
+			nest = await cox.$axios.$get(`/nests/id/${nest_id}/`);
 			if (!nest.success) throw nest.message;
 			nest = nest.data;
 
@@ -120,7 +120,7 @@ export default {
 			{
 				try
 				{
-					categories = await cox.$axios.$get(`/categories?nest=${nest.srl}&ext_field=count_article`);
+					categories = await cox.$axios.$get(`/categories/?nest=${nest.srl}&ext_field=count_article`);
 					if (!categories.success) throw categories.message;
 					categories = categories.data.index;
 				}
@@ -130,7 +130,7 @@ export default {
 
 			// get articles
 			params.nest = parseInt(nest.srl);
-			articles = await cox.$axios.$get(`/articles${util.serialize(params, true)}`);
+			articles = await cox.$axios.$get(`/articles/${util.serialize(params, true)}`);
 			if (articles.success)
 			{
 				articles = articles.data;

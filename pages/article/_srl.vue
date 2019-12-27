@@ -93,7 +93,7 @@ export default {
     };
     try
     {
-      let res = await cox.$axios.$get(`/articles/${srl}${util.serialize(params, true)}`);
+      let res = await cox.$axios.$get(`/articles/${srl}/${util.serialize(params, true)}`);
       if (!(res.success && res.data)) throw res.message;
       return {
         data: {
@@ -143,7 +143,7 @@ export default {
       try
       {
         let srl = parseInt(this.data.srl);
-        let res = await this.$axios.$get(`/articles/${srl}/update?type=star`);
+        let res = await this.$axios.$get(`/articles/${srl}/update/?type=star`);
         if (!res.success) throw 'Failed update';
         this.data.star = res.data.star;
         util.setCookie(res || null, `redgoose-like-${srl}`, 1);
