@@ -14,9 +14,10 @@
       margin: 0;
       font-size: 24px;
       line-height: 1.2;
+      letter-spacing: -.5px;
     }
     p {
-      margin: 2px 0 0;
+      margin: 0;
       font-size: 0;
       span {
         display: inline-block;
@@ -30,159 +31,6 @@
   }
   &__content {
     margin: 20px 0 0;
-    font-size: 1rem;
-    line-height: 1.62;
-
-    h1, h2, h3, h4, h5, h6 {
-      line-height: 1.25;
-      font-weight: 600;
-    }
-    h1, h2, h3 { margin: 2.5rem 0 1.5rem; }
-    h4, h5, h6 { margin: 1.75rem 0 1rem; }
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.5rem; }
-    h4 { font-size: 1.25rem; }
-    h5 { font-size: 1rem; }
-    h6 { font-size: .9375rem; }
-    p { margin: 1rem 0; }
-    ul, ol {
-      margin: 1rem 0;
-      padding-left: 1.125rem;
-      > li {
-        margin: .25rem 0;
-      }
-    }
-    img {
-      display: block;
-      position: relative;
-      left: 50%;
-      margin: 3.25rem 0 1.75rem;
-      max-width: 100vw;
-      transform: translateX(-50%);
-      transform-origin: 50% 50%;
-    }
-    h1, h2, h3 {
-      & + * > img:first-child,
-      & + img {
-        margin-top: 1.5rem;
-      }
-    }
-    blockquote {
-      position: relative;
-      margin: 2rem 0;
-      padding: 1rem 1rem 1rem calc(1rem + 4px);
-      background: mix(#e8e9eb, #fff, 75%);
-      &:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: #1e65d7;
-      }
-      * {
-        &:first-child {
-          margin-top: 0;
-        }
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
-    }
-    hr {
-      margin: 2rem 0;
-      padding: 0;
-      border: none;
-      height: 1px;
-      background: #ddd;
-    }
-    table {
-      margin: 1rem 0;
-      border-collapse: collapse;
-      th, td {
-        padding: .5rem 1rem;
-        border: 1px solid #ddd;
-      }
-      thead {
-        th, td {
-          border-bottom-width: 2px;
-        }
-      }
-    }
-    a {
-      word-break: break-all;
-    }
-    code {
-      margin: 0 2px;
-      white-space: nowrap;
-      padding: 3px 5px;
-      border-radius: 2px;
-      background: mix(#e8e9eb, #fff, 75%);
-      font-size: .75rem;
-      color: #e96900;
-    }
-    pre {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: mix(#e8e9eb, #fff, 75%);
-      font-size: 0;
-      line-height: 1.5;
-      overflow: auto;
-      tab-size: 4;
-      > code {
-        margin: 0;
-        padding: 0;
-        background: none;
-        white-space: pre;
-        border-radius: 0;
-        color: #222;
-      }
-    }
-    input[type=checkbox] {
-      margin-right: 3px;
-    }
-    iframe {
-      display: block;
-      margin: 1.5rem auto;
-      max-width: 100%;
-    }
-    .iframe {
-      margin: 1.5rem 0;
-      position: relative;
-      padding-bottom: 56.25%; /*16:9*/
-      height: 0;
-      overflow: hidden;
-      iframe {
-        position: absolute;
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-      }
-    }
-    embed {
-      display: block;
-      max-width: 100%;
-      margin: 2rem auto 1rem;
-      background: #eee;
-    }
-    > * {
-      &:first-child {
-        margin-top: 0;
-        *:first-child {
-          margin-top: 0;
-        }
-      }
-      &:last-child {
-        margin-bottom: 0;
-        *:last-child {
-          margin-bottom: 0;
-        }
-      }
-    }
   }
   &__nav {
     margin: 40px 0 0;
@@ -298,9 +146,10 @@
       h1 {
         font-size: 32px;
         line-height: 1.2;
+        letter-spacing: -1px;
       }
       p {
-        margin-top: 4px;
+        margin-top: 2px;
         span {
           font-size: 11px;
         }
@@ -308,9 +157,6 @@
     }
     &__content {
       margin-top: 40px;
-      img {
-        max-width: 100vw;
-      }
     }
     &__nav {
       margin-top: 50px;
@@ -320,18 +166,6 @@
     &__header {
       h1 {
         font-size: 36px;
-      }
-    }
-    &__content {
-      img {
-        max-width: 90vw;
-      }
-    }
-    @include retina() {
-      &__content {
-        img {
-          zoom: .75;
-        }
       }
     }
   }

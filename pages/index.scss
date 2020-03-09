@@ -1,8 +1,9 @@
 @import "../assets/css/libs/valiables";
 @import "../assets/css/libs/mixins";
 
+$self: '.index';
+
 .index {
-  $self: '.index';
   &__title {
     margin: 0 0 15px;
     padding: 0 20px;
@@ -15,6 +16,7 @@
     padding: 10px 20px;
     box-sizing: border-box;
     background: #e7e8eb;
+    user-select: none;
     ul {
       margin: 0 -10px;
       padding: 0;
@@ -24,11 +26,6 @@
     }
     li {
       display: block;
-      &.on {
-        a {
-          color: $color-key;
-        }
-      }
     }
     a {
       display: block;
@@ -36,7 +33,9 @@
       text-decoration: none;
       color: #222;
       font-size: 0;
-      &:active {
+      &.active,
+      &.nuxt-link-exact-active {
+        color: $color-key;
         text-decoration: underline;
       }
     }

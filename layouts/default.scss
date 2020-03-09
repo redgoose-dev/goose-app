@@ -66,6 +66,7 @@
 			transition: background $dropdown-speed ease-out;
 			font-size: 0;
 			-webkit-tap-highlight-color: transparent;
+			cursor: pointer;
 			> i {
 				position: absolute;
 				left: 50%;

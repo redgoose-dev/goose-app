@@ -40,7 +40,7 @@
 import * as util from '~/assets/libs/util';
 
 export default {
-	name: 'intro',
+	name: 'page-intro',
 	components: {
 		'items-index': () => import('~/components/contents/index'),
 		'nav-paginate': () => import('~/components/navigation/paginate'),
@@ -50,6 +50,7 @@ export default {
 		try
 		{
 			const { state } = cox.store;
+			const { env } = state;
 			let page = (cox.route.query && cox.route.query.page) ? parseInt(cox.route.query.page) : 1;
 			let params = {
 				field: 'srl,nest_srl,json,title',
@@ -58,15 +59,15 @@ export default {
 				page,
 				ext_field: '',
 			};
-			if (state.env.app.app_srl) params.app = state.env.app.app_srl;
-			if (state.env.app.intro.newest.size) params.size = state.env.app.intro.newest.size;
-			if (state.env.app.intro.newest.showMeta.nestName) params.ext_field += 'nest_name';
-			if (state.env.app.intro.newest.showMeta.date) params.field += ',regdate';
-			if (state.env.app.intro.newest.showMeta.hit) params.field += ',hit';
-			if (state.env.app.intro.newest.showMeta.star) params.field += ',star';
+			if (env.app.app_srl) params.app = env.app.app_srl;
+			if (env.app.intro.newest.size) params.size = env.app.intro.newest.size;
+			if (env.app.intro.newest.showMeta.nestName) params.ext_field += 'nest_name';
+			if (env.app.intro.newest.showMeta.date) params.field += ',regdate';
+			if (env.app.intro.newest.showMeta.hit) params.field += ',hit';
+			if (env.app.intro.newest.showMeta.star) params.field += ',star';
 
 			let res = await cox.$axios.$get('/articles/' + util.serialize(params, true));
-			if (!res.success) throw res.message;
+			if (!res.success) throw new Error(res.message);
 			return {
 				params,
 				total: res.data.total,
@@ -80,7 +81,7 @@ export default {
 		catch(e)
 		{
 			return {
-				error: (typeof e === 'string') ? e : 'Service error',
+				error: e.message || 'Service error',
 				index: null,
 				total: 0,
 				loading: false,
@@ -106,7 +107,7 @@ export default {
 		title()
 		{
 			return this.$store.state.env.app.name;
-		}
+		},
 	},
 	methods: {
 		async onChangePage(page)
@@ -132,9 +133,9 @@ export default {
 				this.index = null;
 				this.total = 0;
 			}
-		}
-	}
+		},
+	},
 }
 </script>
 
-<style src="./index.scss" lang="scss" scoped></style>
+<style src="./index.scss" lang="scss" scoped/>

@@ -39,7 +39,7 @@ export default {
 		'error-body': () => import('~/components/error/body'),
 	},
 	props: {
-		index: { type: Array, default: [] },
+		index: { type: [Array,Object], default: [] },
 		skin: { type: String, default: 'thumbnail' }, // card|thumbnail
 		loading: { type: Boolean, default: false },
 		error: { type: String, default: null },

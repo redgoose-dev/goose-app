@@ -9,19 +9,10 @@
         <span>{{fields.regdate}}</span>
       </p>
     </header>
-    <div v-html="fields.body" class="article__content"></div>
+    <div v-html="fields.body" class="redgoose-body article__content"></div>
     <nav class="article__nav">
-      <nuxt-link :to="beforePath" title="back" class="list">
-        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12">
-          <g fill="none" fill-rule="evenodd">
-            <path fill="#000" d="M7.41 1.41L6 0 0 6l6 6 1.41-1.41L2.83 6z"/>
-            <path d="M-8-6h24v24H-8z"/>
-          </g>
-        </svg>
-      </nuxt-link>
       <button
         type="button"
-        data-srl="11"
         class="like"
         @click="onClickStar"
         :class="[ !!fields.selectedStar && 'on' ]"
@@ -101,7 +92,6 @@ export default {
           content: marked(res.data.content),
           selectedStar: !!checkStar,
         },
-        beforePath: '/',
         error: null,
       };
     }
@@ -129,13 +119,6 @@ export default {
       } : {};
     },
   },
-  beforeRouteEnter(to, from, next)
-  {
-    next(vm => {
-      vm.beforePath = from.fullPath;
-      next();
-    });
-  },
   methods: {
     async onClickStar(e)
     {
@@ -154,7 +137,7 @@ export default {
         this.data.selectedStar = false;
       }
     },
-  }
+  },
 }
 </script>
 

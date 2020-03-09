@@ -1,6 +1,7 @@
 @import "./libs/valiables";
 @import "./libs/normalize";
 
+html {}
 body {
 	margin: 0;
 	min-width: 320px;
@@ -12,12 +13,10 @@ body {
 	color: $color-text-base;
 	overflow-x: hidden;
 }
-
 body, button, input, textarea, select {
 	font-family: $font-system;
 	text-size-adjust: none;
 }
-
 a {
 	color: $color-key;
 }
@@ -28,4 +27,5 @@ samp {
 	font-family: $font-console;
 }
 
+@import "~redgoose-content-body/dist/body.scss";
 @import "./nav-paginate";

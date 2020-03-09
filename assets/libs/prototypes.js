@@ -1,5 +1,5 @@
 Object.prototype.isEmpty = function() {
-	for(var key in this) {
+	for(let key in this) {
 		if(this.hasOwnProperty(key))
 			return false;
 	}
