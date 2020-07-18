@@ -2,7 +2,6 @@ const env = require('./user/env');
 
 module.exports = {
   mode: 'universal', // spa,universal
-
   head: {
     title: env.app.name,
     htmlAttrs: {
@@ -27,42 +26,32 @@ module.exports = {
       { hid: 'favicon', rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
   },
-
   loading: {
     color: env.app.loading.color,
     failedColor: env.app.loading.failedColor,
     height: env.app.loading.height,
   },
-
   css: [
     '~assets/css/app.scss'
   ],
-
   env: {
     ...env,
   },
-
   plugins: [
     '~/plugins/axios'
   ],
-
   modules: [
     '@nuxtjs/axios'
   ],
-
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
     baseURL: env.api.url,
   },
-
   router: {
     middleware: 'hook',
   },
-
   build: {
     extractCSS: true,
-    extend(config, ctx) {
-      //
-    }
-  }
+  },
+  telemetry: false,
 };

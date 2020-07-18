@@ -10,3 +10,4 @@ pages/page/*
 static/
 !static/images
 user/*
+yarn.lock
