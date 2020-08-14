@@ -6,5 +6,18 @@
             "email": "scripter@me.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.1.0",
+        "altorouter/altorouter": "^2.0.1",
+        "eftec/bladeone": "^3.46.3",
+        "erusev/parsedown": "^1.7.4",
+        "redgoose/paginate": "^1.0.3",
+        "redgoose/console": "^1.0.1",
+        "redgoose/restapi": "^1.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/"
+        }
+    }
 }

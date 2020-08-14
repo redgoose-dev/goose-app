@@ -1,4 +1,20 @@
-/vendor/
+# directories
+.idea/
+node_modules/
+cache/
+vendor/*
+assets/vendor/*
+assets/dist/*
+view/pages/*
 
+# global files
 .DS_Store
 .env
+yarn.lock
+yarn-error.log
+package-lock.json
+composer.lock
+
+# user files
+favicon.ico
+!view/pages/.keep

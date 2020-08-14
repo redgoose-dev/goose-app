@@ -1,0 +1,14 @@
+{
+  "name": "goose-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/redgoose-dev/goose-app.git",
+  "author": "redgoose <scripter@me.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "./action.sh start",
+    "setup": "./action.sh setup",
+    "watch": "parcel watch assets/js/app.js --no-autoinstall --out-dir assets/dist --cache-dir cache/parcel --public-url /assets/dist",
+    "build": "rm -rf assets/dist && parcel build assets/js/app.js --no-source-maps --out-dir assets/dist --public-url ./ --cache-dir cache/parcel"
+  }
+}
