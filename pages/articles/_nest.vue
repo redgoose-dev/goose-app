@@ -66,7 +66,7 @@ export default {
   },
   head()
   {
-    let title = `${this.title} on ${this.$store.state.env.app.name}`;
+    let title = `${this.title ? `${this.title} on ` : ''}${this.$store.state.env.app.name}`;
     return {
       title,
       meta: [
@@ -131,6 +131,7 @@ export default {
           categories,
         },
         index: articles.index,
+        title: nest.name,
         total: articles.total,
         page: params.page,
         size: params.size,
@@ -145,6 +146,7 @@ export default {
         index: null,
         total: 0,
         loading: false,
+        data: {},
       };
     }
   },
