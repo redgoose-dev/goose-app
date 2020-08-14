@@ -1,13 +1,4 @@
-.idea/
-node_modules/
-.nuxt/
-dist/
-.AppleDouble/
+/vendor/
 
 .DS_Store
-0
-pages/page/*
-static/
-!static/images
-user/*
-yarn.lock
+.env

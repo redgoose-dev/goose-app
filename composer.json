@@ -1,0 +1,10 @@
+{
+    "name": "redgoose/goose-app",
+    "authors": [
+        {
+            "name": "redgoose",
+            "email": "scripter@me.com"
+        }
+    ],
+    "require": {}
+}
