@@ -1,12 +1,15 @@
 # directories
-.idea/*
+.idea/
 node_modules/
-cache/*
+cache/view/*
+!cache/view/.keep
 vendor/*
 assets/vendor/*
 assets/dist/*
 view/pages/*
+!view/pages/.keep
 user/*
+!user/.keep
 
 # global files
 .DS_Store
@@ -18,7 +21,5 @@ package-lock.json
 composer.lock
 
 # user files
-!cache/view/.keep
-!view/pages/.keep
-!user/.keep
-favicon.ico
+robots.txt
+view/head-user.blade.php

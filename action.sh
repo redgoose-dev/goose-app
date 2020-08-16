@@ -15,16 +15,19 @@ case "$1" in
     ;;
 
   setup)
-    # make cache directory
-    if [ ! -d cache ]; then
-      mkdir cache
-      chmod 707 cache
-      mkdir cache/view
-      chmod 707 cache/view
-    fi
     # copy .env
     if [ ! -f .env ]; then
       cp resource/.env .env
+    fi
+    # copy user files
+    if [ ! -f user/route.php ]; then
+      cp resource/route.php user/route.php
+    fi
+    if [ ! -f user/preference.php ]; then
+      cp resource/preference.php user/preference.php
+    fi
+    if [ ! -f view/head-user.blade.php ]; then
+      cp resource/head-user.blade.php view/head-user.blade.php
     fi
     ;;
 
