@@ -1,20 +1,24 @@
 # directories
-.idea/
+.idea/*
 node_modules/
-cache/
+cache/*
 vendor/*
 assets/vendor/*
 assets/dist/*
 view/pages/*
+user/*
 
 # global files
 .DS_Store
 .env
+!resource/.env
 yarn.lock
 yarn-error.log
 package-lock.json
 composer.lock
 
 # user files
-favicon.ico
+!cache/view/.keep
 !view/pages/.keep
+!user/.keep
+favicon.ico
