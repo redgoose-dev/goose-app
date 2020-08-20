@@ -1,4 +1,7 @@
 <?php
 return (object)[
-  'copyright' => 'Copyright 2018 redgoose. All right reserved.',
+  'title' => 'redgoose demo',
+  'footer' => (object)[
+    'copyright' => 'Copyright 2018 redgoose. All right reserved.',
+  ],
 ];

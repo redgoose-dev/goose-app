@@ -1,0 +1,39 @@
+// responsive
+@mixin responsive($range)
+{
+  @if $range == mini
+  {
+    @media (min-width: 320px) { @content; }
+  }
+  @else if $range == tablet
+  {
+    @media (min-width: 768px) { @content; }
+  }
+    // 768 ~ 1024
+  @else if $range == desktop
+  {
+    @media (min-width: 1024px) { @content; }
+  }
+    // 1280 ~
+  @else if $range == large
+  {
+    @media (min-width: 1280px) { @content; }
+  }
+    // 1440 ~
+  @else if $range == max
+  {
+    @media (min-width: 1440px) { @content; }
+  }
+}
+
+// retina display
+@mixin retina()
+{
+  @media (-webkit-min-device-pixel-ratio: 2) { @content; }
+}
+
+// dark mode
+@mixin dark-mode() {
+  @media (prefers-color-scheme: dark) { @content; }
+}
+

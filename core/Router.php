@@ -16,7 +16,7 @@ class Router {
 	public function __construct()
 	{
 		$this->route = new AltoRouter();
-		$this->route->setBasePath(getenv('PATH_RELATIVE'));
+		$this->route->setBasePath($_ENV['PATH_RELATIVE']);
 		$this->route->addMatchTypes([ 'char' => '[0-9A-Za-z_-]++' ]);
 		$this->route->addRoutes($this->map());
 		$this->match = $this->route->match();
@@ -29,7 +29,14 @@ class Router {
 	 */
 	private function map()
 	{
-		return require __PATH__.'/./core/route.php';
+	  if (file_exists(__PATH__.'/./user/route.php'))
+    {
+      return require __PATH__.'/./user/route.php';
+    }
+	  else
+    {
+      return require __PATH__.'/./resource/route.php';
+    }
 	}
 
 }
