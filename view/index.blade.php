@@ -48,7 +48,7 @@ if(!defined("__GOOSE__")){exit();}
     <div class="articles articles--{{$preference->index->skin}}">
       @foreach ($index as $k=>$item)
       <div class="item">
-        <a href="/article/{{$item->srl}}/" class="item__wrap">
+        <a href="{{__ROOT__}}/article/{{$item->srl}}/" class="item__wrap">
           <figure class="item__image">
             @if ($item->image)
             <img src="{{$item->image}}" alt="{{$item->title}}">
