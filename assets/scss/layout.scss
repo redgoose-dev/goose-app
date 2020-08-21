@@ -200,7 +200,7 @@
 
   .mode-responsive & {
     @include responsive(tablet) {
-      --size-header-height: 48px;
+      --size-header-height: 54px;
       height: var(--size-header-height);
       &__wrap {
         display: flex;
@@ -234,8 +234,19 @@
       }
     }
   }
+  .mode-dark & {
+    @include dark-mode() {
+      --color-header-bg: rgba(17,17,17,.75);
+      --color-header-fill: #ccc;
+      --color-header-fill-blur: #666;
+      --color-header-line: rgba(0,0,0,.75);
+      --color-header-button-active-bg: #111;
+      --color-header-dropdown-bg: #111;
+    }
+  }
 }
 .header-navigation {
+  --color-desktop-dropdown-bg: #fff;
   > ul {
     margin: 0;
     padding: 16px 0 36px;
@@ -258,15 +269,25 @@
         font-weight: 600;
         border-radius: 0;
         -webkit-tap-highlight-color: transparent;
-        user-select: none;
         color: var(--color-text);
         &:active {
           opacity: .75;
+        }
+        &[href=''],
+        &[href='#'] {
+          cursor: default;
+          &:active {
+            opacity: 1;
+          }
         }
       }
       &.active {
         > a {
           color: var(--color-key);
+          cursor: default;
+          &:active {
+            opacity: 1;
+          }
         }
       }
     }
@@ -277,6 +298,7 @@
       display: flex;
       flex-wrap: wrap;
       box-sizing: border-box;
+      user-select: none;
       > li {
         box-sizing: border-box;
         > a {
@@ -352,6 +374,22 @@
                 text-decoration: underline;
               }
             }
+          }
+        }
+      }
+    }
+  }
+  .mode-dark & {
+    @include dark-mode() {
+    }
+  }
+  .mode-dark.mode-responsive & {
+    @include dark-mode() {
+      @include responsive(tablet) {
+        > ul {
+          ul {
+            background: #111;
+            box-shadow: 0 3px 15px rgba(0,0,0,.5);
           }
         }
       }
@@ -473,9 +511,10 @@
     color: var(--color-text-blur);
     font-family: var(--font-eng);
   }
+
   .mode-responsive & {
     @include responsive(tablet) {
-      padding: 60px 0 24px;
+      padding: 52px 0 24px;
     }
   }
 }

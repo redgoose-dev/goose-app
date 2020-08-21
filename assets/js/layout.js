@@ -44,7 +44,7 @@ function initNavigation()
 {
   const $depth1Links = $('.header-navigation > ul > li > a');
   $depth1Links.on('click', function(e) {
-    if (!$(this).attr('href')) return false;
+    if (!$(this).attr('href') || $(this).attr('href') === '#') return false;
     // 하위메뉴가 있고 터치 디바이스라면 클릭진행을 막는다.
     if ($(window).width() < 768) return true;
     return !(util.isTouchDevice() && $(this).next().length);

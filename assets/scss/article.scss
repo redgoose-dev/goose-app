@@ -1,7 +1,7 @@
 @import "mixin";
 
 .article {
-  margin: 42px 0 0;
+  margin: 24px 0 0;
   padding: 0 var(--size-padding-side);
   &__header {
     text-align: center;
@@ -10,7 +10,7 @@
       font-size: 28px;
       font-weight: 800;
       line-height: 1.15;
-      letter-spacing: -.5px;
+      letter-spacing: -.75px;
     }
     p {
       margin: 2px 0 0;
@@ -30,6 +30,7 @@
   }
   &__content {
     margin: 24px 0 0;
+    color: var(--color-text-content);
   }
   &__like {
     margin: 32px 0 0;
@@ -125,12 +126,63 @@
       }
     }
   }
+
   .mode-responsive & {
     @include responsive(tablet) {
-      margin: 54px 0 0;
+      margin: 42px 0 0;
       &__wrap {
         max-width: 768px;
         margin: 0 auto;
+      }
+      &__header {
+        margin-left: calc(var(--size-padding-side) * -1);
+        margin-right: calc(var(--size-padding-side) * -1);
+        h1 {
+          font-size: 36px;
+        }
+        p {
+          span {
+            font-size: 11px;
+          }
+        }
+      }
+      &__content {
+        margin-top: 32px;
+      }
+      &__like {
+        margin-top: 40px;
+      }
+    }
+  }
+  .mode-dark & {
+    @include dark-mode() {
+      &__like {
+        button {
+          svg {
+            .step-1 {
+              color: #50e58f;
+            }
+            .step-2 {
+              color: #1CCD5C;
+            }
+            .step-3 {
+              color: #045425;
+            }
+          }
+          &:disabled {
+            svg {
+              .step-1 {
+                color: #777;
+              }
+              .step-2 {
+                color: #444;
+              }
+              .step-3 {
+                color: #222;
+              }
+            }
+          }
+        }
       }
     }
   }

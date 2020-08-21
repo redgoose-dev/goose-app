@@ -1,0 +1,21 @@
+$dir: '../fonts';
+
+// mixins
+@mixin font-loader-spoqa-han-sans($weight-name, $weight)
+{
+  @font-face {
+    font-family: 'Spoqa Han Sans';
+    font-style: normal;
+    font-weight: $weight;
+    font-display: swap;
+    src: local('Spoqa Han Sans #{$weight-name}'),
+      url('#{$dir}/spoqa-han-sans/SpoqaHanSans#{$weight-name}.woff2') format('woff2'),
+      url('#{$dir}/spoqa-han-sans/SpoqaHanSans#{$weight-name}.woff') format('woff');
+  }
+}
+
+// load fonts
+@include font-loader-spoqa-han-sans('Thin', 100);
+@include font-loader-spoqa-han-sans('Light', 300);
+@include font-loader-spoqa-han-sans('Regular', 400);
+@include font-loader-spoqa-han-sans('Bold', 700);

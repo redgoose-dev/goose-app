@@ -1,8 +1,10 @@
 @import "mixin";
+@import "fonts";
 
 :root {
   --color-text: #222;
   --color-text-blur: #777;
+  --color-text-content: #222;
   --color-bg: #fafbfc;
   --color-key: #b31f37;
   --size-text: 1rem;
@@ -15,13 +17,14 @@
   @include dark-mode() {
     --color-text: #fff;
     --color-text-blur: #777;
+    --color-text-content: #ddd;
     --color-bg: #222;
     --color-key: #1ccd5c;
   }
 }
 .mode-responsive {
   @include responsive(tablet) {
-    --size-padding-side: 42px;
+    --size-padding-side: 64px;
   }
 }
 
@@ -56,3 +59,4 @@ code, kbd, pre, samp {
 @import "layout";
 @import "index";
 @import "article";
+@import "etc";

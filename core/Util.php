@@ -98,6 +98,9 @@ class Util {
         $obj->hit = (int)$item->hit;
         $obj->categoryName = isset($item->category_name) ? $item->category_name : null;
         $obj->category = isset($item->category_srl) ? $item->category_srl : null;
+        $obj->regdate = isset($item->regdate) ? self::convertDate($item->regdate) : null;
+        $obj->order = isset($item->order) ? $item->order : null;
+        $obj->nestName = isset($item->nest_name) ? $item->nest_name : null;
         $result[] = $obj;
       }
     }
@@ -226,6 +229,17 @@ class Util {
     $con = bear3StrCut($con, $len);
 
     return $con;
+  }
+
+  /**
+   * convert date
+   *
+   * @param string $date
+   * @return string
+   */
+  static public function convertDate($date)
+  {
+    return explode(' ', $date)[0];
   }
 
 }

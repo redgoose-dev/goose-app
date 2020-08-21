@@ -1,5 +1,6 @@
 <?php
 if(!defined("__GOOSE__")){exit();}
+
 /**
  * article page
  */
@@ -30,13 +31,31 @@ if(!defined("__GOOSE__")){exit();}
     <header class="article__header">
       <h1>{{$contentTitle}}</h1>
       <p>
-        <span>{{$data->nest_name}}{{(isset($data->category_name) && $data->category_name) ? ' / '.$data->category_name : ''}}</span>
-        <span>Hit:{{$data->hit}}</span>
+        @if ($preference->article->showMeta->nest && isset($data->nest_name))
+        <span>{{$data->nest_name}}</span>
+        @endif
+        @if ($preference->article->showMeta->category && isset($data->category_name))
+        <span>{{$data->category_name}}</span>
+        @endif
+        @if ($preference->article->showMeta->regdate)
+        <span>{{core\Util::convertDate($data->regdate)}}</span>
+        @endif
+        @if ($preference->article->showMeta->order)
         <span>{{$data->order}}</span>
+        @endif
+        @if ($preference->article->showMeta->hit)
+        <span>Hit:{{$data->hit}}</span>
+        @endif
+        @if ($preference->article->showMeta->like)
+        <span>Like:{{$data->star}}</span>
+        @endif
       </p>
     </header>
-{{--      redgoose-body--dark--}}
-    <div class="redgoose-body article__content">{!! $data->content !!}</div>
+    <?php
+    $classNames = ['redgoose-body', 'article__content'];
+    if ($preference->darkMode) $classNames[] = 'redgoose-body--dark';
+    ?>
+    <div class="{{join(' ', $classNames)}}">{!! $data->content !!}</div>
     <nav class="article__like">
       <button type="button" id="button_like" title="on like" data-srl="{{$data->srl}}"{!! $onLike ? ' disabled' : '' !!}>
         <span>

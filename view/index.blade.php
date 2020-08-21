@@ -1,5 +1,6 @@
 <?php
 if(!defined("__GOOSE__")){exit();}
+
 /**
  * intro page
  */
@@ -17,10 +18,10 @@ if(!defined("__GOOSE__")){exit();}
 
 @section('meta')
 <title>{{$title}}</title>
-{{--<meta name="description" content="{{ $_ENV['DESCRIPTION'] }}"/>--}}
-{{--<meta property="og:title" content="{{ $title }}"/>--}}
-{{--<meta property="og:description" content="{{ $_ENV['DESCRIPTION'] }}">--}}
-{{--<meta property="og:image" content="{{ __API__ }}/usr/icons/og-redgoose.jpg">--}}
+<meta name="description" content="{{$preference->description}}"/>
+<meta property="og:title" content="{{$title}}"/>
+<meta property="og:description" content="{{$preference->description}}">
+<meta property="og:image" content="{{__ROOT__}}/user/og-banner.jpg">
 @endsection
 
 @section('contents')
@@ -53,26 +54,29 @@ if(!defined("__GOOSE__")){exit();}
             <img src="{{$item->image}}" alt="{{$item->title}}">
             @else
             <span>
-              <img src="{{__ROOT__}}/assets/images/empty/0.svg" alt="">
+              <img src="{{__ROOT__}}/assets/images/empty/{{rand(0,20)}}.svg" alt="">
             </span>
             @endif
           </figure>
           <div class="item__body">
             <strong>{{$item->title}}</strong>
             <p>
-              @if (isset($item->date))
-              <span>{{$item->date}}</span>
-              @endif
-              @if (isset($item->nestName))
+              @if ($preference->index->showMeta->nest && isset($item->nestName))
               <span>{{$item->nestName}}</span>
               @endif
-              @if (isset($item->categoryName))
+              @if ($preference->index->showMeta->category && isset($item->categoryName))
               <span>{{$item->categoryName}}</span>
               @endif
-              @if (isset($item->hit))
+              @if ($preference->index->showMeta->order && isset($item->order))
+              <span>{{$item->order}}</span>
+              @endif
+              @if ($preference->index->showMeta->regdate && isset($item->regdate))
+              <span>{{$item->regdate}}</span>
+              @endif
+              @if ($preference->index->showMeta->hit && isset($item->hit))
               <span>Hit:{{$item->hit}}</span>
               @endif
-              @if (isset($item->star))
+              @if ($preference->index->showMeta->like && isset($item->star))
               <span>Like:{{$item->star}}</span>
               @endif
             </p>

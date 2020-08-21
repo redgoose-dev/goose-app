@@ -1,0 +1,43 @@
+@import "mixin";
+
+.page {
+  --index-body-top-margin: 16px;
+  margin: 24px 0 0;
+  &__header {
+    margin: 0 0 24px;
+    padding: 0 var(--size-padding-side);
+    text-align: center;
+  }
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.42;
+    letter-spacing: -.75px;
+  }
+  &__description {
+    margin: 0;
+    color: var(--color-text-blur);
+    font-size: 11px;
+  }
+  &__body {
+    margin: 0;
+    position: relative;
+  }
+
+  .mode-responsive & {
+    @include responsive(tablet) {
+      --index-body-top-margin: 24px;
+      margin-top: 42px;
+      padding: 0 var(--size-padding-side);
+      &__title {
+        font-size: 36px;
+        line-height: 1.2;
+      }
+      &__body {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1024px;
+      }
+    }
+  }
+}

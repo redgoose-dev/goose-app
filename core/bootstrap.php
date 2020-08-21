@@ -88,7 +88,7 @@ try {
         'size' => $size,
         'order' => '`order` desc, `srl` desc',
         'q' => isset($_GET['q']) ? $_GET['q'] : null,
-        'ext_field' => '',
+        'ext_field' => 'nest_name',
       ]);
       if (!isset($res->response)) throw new Exception($res->message, $res->code);
       $res = $res->response;
@@ -146,7 +146,7 @@ try {
 
       // get articles
       $articles = $api->call('get', '/articles/', (object)[
-        'field' => 'srl,category_srl,title,json,type,`order`,hit,star',
+        'field' => 'srl,category_srl,title,json,type,order,hit,star,regdate',
         'order' => '`order` desc, `srl` desc',
         'app' => $preference->app_srl,
         'nest' => $nest->srl,
@@ -206,12 +206,16 @@ try {
       $contentTitle = !$article->title || $article->title === '.' ? 'Untitled work' : $article->title;
       $title = $contentTitle.' on '.$preference->title;
 
+      // set image
+      $image = __URL__.'/user/og-banner.jpg';
+      if (isset($article->json->thumbnail->path)) $image = __API__.'/'.$article->json->thumbnail->path;
+
       // render page
       $blade->render('article', (object)[
         'title' => $title,
         'contentTitle' => $contentTitle,
         'description' => Util::contentToShortText($article->content),
-        'image' => __API__.'/'.$article->json->thumbnail->path,
+        'image' => $image,
         'data' => $article,
         'onLike' => Util::checkCookie('goose-star-'.$_params->srl),
         'preference' => $preference,

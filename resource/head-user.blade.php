@@ -22,4 +22,5 @@
 <link rel="apple-touch-icon" href="{{__ROOT__}}/user/app-icon.png"/>
 <link rel="apple-touch-startup-image" href="{{__ROOT__}}/user/app-icon.png"/>
 
+<link rel="stylesheet" href="{{__ROOT__}}/user/custom.css" media="all"/>
 <link rel="manifest" href="{{__ROOT__}}/user/manifest.json"/>

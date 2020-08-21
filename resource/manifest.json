@@ -1,1 +1,31 @@
-{}
+{
+  "short_name": "goose-app",
+  "name": "goose",
+  "icons": [
+    {
+      "src": "/user/app-icon.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/user/app-icon.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/user/app-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/user/app-icon.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#b31f37",
+  "background_color": "#fafbfc",
+  "orientation": "portrait"
+}
