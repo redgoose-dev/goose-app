@@ -41,3 +41,56 @@
     }
   }
 }
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  min-height: 240px;
+  max-height: 480px;
+  &__image {
+    margin: 0;
+    svg {
+      display: block;
+      width: 100px;
+      height: 100px;
+      color: var(--color-key);
+      margin: 0 auto;
+    }
+  }
+  &__code {
+    margin: 8px 0 0;
+    font-size: 42px;
+    line-height: 1.15;
+    font-family: var(--font-eng);
+    text-align: center;
+  }
+  &__message {
+    margin: 0;
+    color: var(--color-text-blur);
+    font-family: var(--font-eng);
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.15;
+  }
+
+  .mode-responsive & {
+    min-height: 360px;
+    max-height: 580px;
+    @include responsive(tablet) {
+      &__image {
+        svg {
+          width: 120px;
+          height: 120px;
+        }
+      }
+      &__code {
+        font-size: 56px;
+      }
+      &__message {
+        font-size: 18px;
+      }
+    }
+  }
+}

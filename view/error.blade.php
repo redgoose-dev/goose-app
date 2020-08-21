@@ -19,11 +19,11 @@ if(!defined("__GOOSE__")){exit();}
 
 @section('contents')
 <article class="error">
-  <figure class="error__image">
-    {!! $icon !!}
-  </figure>
-  <h1 class="error__code">{{$code}}</h1>
-  <p class="error__message">{{$message}}</p>
+  <div class="error__wrap">
+    <figure class="error__image">{!! $icon !!}</figure>
+    <h1 class="error__code">{{$code}}</h1>
+    <p class="error__message">{{$message}}</p>
+  </div>
 </article>
 @endsection
 

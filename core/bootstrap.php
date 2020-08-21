@@ -90,7 +90,7 @@ try {
         'q' => isset($_GET['q']) ? $_GET['q'] : null,
         'ext_field' => 'nest_name',
       ]);
-      if (!isset($res->response)) throw new Exception($res->message, $res->code);
+      if (!(isset($res->response) && $res->code === 200)) throw new Exception($res->message, $res->code);
       $res = $res->response;
       $articles = isset($res->data->index) ? Util::convertWorksData($res->data->index) : [];
 
@@ -117,7 +117,7 @@ try {
 
       // get nest
       $nest = $api->call('get', '/nests/id/'.$nestId.'/');
-      if (!isset($nest->response)) throw new Exception($nest->message, $nest->code);
+      if (!(isset($nest->response) && $nest->code === 200)) throw new Exception($nest->message, $nest->code);
       $nest = $nest->response;
       if (!(isset($nest->data) && $nest->success)) throw new Exception($nest->message, $nest->code);
       $nest = $nest->data;
