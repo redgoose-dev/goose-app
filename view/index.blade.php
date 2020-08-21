@@ -53,9 +53,7 @@ if(!defined("__GOOSE__")){exit();}
             @if ($item->image)
             <img src="{{$item->image}}" alt="{{$item->title}}">
             @else
-            <span>
-              <img src="{{__ROOT__}}/assets/images/empty/{{rand(0,20)}}.svg" alt="">
-            </span>
+            <span>{!! Core\EmptyIcon::random(0,20) !!}</span>
             @endif
           </figure>
           <div class="item__body">

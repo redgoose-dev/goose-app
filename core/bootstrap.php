@@ -268,7 +268,36 @@ try {
 }
 catch(Exception $e)
 {
-  Util::setHeader('text');
-  var_dump($e);
-  // TODO: 오류페이지 작업
+  if ($_ENV['DEBUG'] === '1')
+  {
+    $code = (int)$e->getCode();
+    $message = $e->getMessage();
+  }
+  else
+  {
+    switch ((int)$e->getCode())
+    {
+      case 404:
+        $code = 404;
+        $message = 'Not found page.';
+        break;
+      default:
+        $code = 500;
+        $message = 'Server error';
+        break;
+    }
+  }
+  // render page
+  try
+  {
+    $blade->render('error', (object)[
+      'code' => $code,
+      'message' => $message,
+      'icon' => EmptyIcon::random(0, 20),
+      'preference' => $preference,
+    ]);
+  }
+  catch(Exception $e) {
+    echo ($_ENV['DEBUG'] === '1') ? $e->getCode() . ': ' . $e->getMessage() : 'Unknown error.';
+  }
 }
