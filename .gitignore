@@ -9,8 +9,6 @@ assets/vendor/*
 assets/dist/*
 view/pages/*
 !view/pages/.keep
-user/*
-!user/.keep
 
 # global files
 .DS_Store
@@ -22,5 +20,7 @@ package-lock.json
 composer.lock
 
 # user files
+user/*
+!user/.keep
 robots.txt
 view/head-user.blade.php

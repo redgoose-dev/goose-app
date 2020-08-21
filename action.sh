@@ -10,10 +10,6 @@ start() {
 
 # switching
 case "$1" in
-  start)
-    start
-    ;;
-
   setup)
     # copy .env
     if [ ! -f .env ]; then
@@ -32,6 +28,9 @@ case "$1" in
     if [ ! -f view/head-user.blade.php ]; then
       cp resource/head-user.blade.php view/head-user.blade.php
     fi
+    if [ ! -f user/img-logo.png ]; then
+      cp resource/img-logo.png user/img-logo.png
+    fi
     if [ ! -f user/manifest.json ]; then
       cp resource/manifest.json user/manifest.json
     fi
@@ -41,6 +40,10 @@ case "$1" in
     if [ ! -f user/route.php ]; then
       cp resource/route.php user/route.php
     fi
+    ;;
+
+  start)
+    start
     ;;
 
   *)

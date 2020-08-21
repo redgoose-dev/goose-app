@@ -1,36 +1,24 @@
 <?php
 return (object)[
   'title' => 'goose-app',
-  'app_srl' => 3,
-  'darkMode' => false,
+  'app_srl' => 1,
+  'darkMode' => true,
   'responsive' => true,
   'description' => 'demos articles on goose-app',
   'header' => (object)[
-    'logoPath' => '/assets/images/img-logo.png',
+    'logoPath' => '/user/img-logo.png',
     'navigation' => [
       (object)[
-        'label' => 'Visual',
-        'link' => '/nest/scrap-visual/',
+        'label' => 'Menu #1',
+        'link' => '/nest/menu1/',
         'target' => '',
-        'match' => '/nest/scrap-visual',
+        'match' => '/nest/menu1',
       ],
       (object)[
-        'label' => 'Fashion',
-        'link' => '/nest/scrap-fashion/',
+        'label' => 'Menu #2',
+        'link' => '/nest/menu2/',
         'target' => '',
-        'match' => '/nest/scrap-fashion',
-      ],
-      (object)[
-        'label' => 'Review',
-        'link' => '/nest/scrap-review/',
-        'target' => '',
-        'match' => '/nest/scrap-review',
-      ],
-      (object)[
-        'label' => 'Note',
-        'link' => '/nest/scrap-note/',
-        'target' => '',
-        'match' => '/nest/scrap-note',
+        'match' => '/nest/menu2',
       ],
       (object)[
         'label' => 'Pages',
@@ -67,8 +55,8 @@ return (object)[
       'category' => true,
       'order' => true,
       'regdate' => false,
-      'hit' => false,
-      'like' => false,
+      'hit' => true,
+      'like' => true,
     ],
   ],
   'article' => (object)[
@@ -78,7 +66,7 @@ return (object)[
       'regdate' => false,
       'order' => true,
       'hit' => true,
-      'like' => false,
+      'like' => true,
     ],
   ],
   'rss' => (object)[
