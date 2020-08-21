@@ -1,32 +1,26 @@
 {
   "name": "goose-app",
-  "version": "2.1.2",
-  "private": false,
+  "version": "3.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/redgoose-dev/goose-app.git",
+  "author": "redgoose <scripter@me.com>",
   "license": "MIT",
-  "author": "redgoose",
-  "description": "gallery app from goose",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/redgoose-dev/goose-app"
-  },
   "scripts": {
-    "dev": "cross-env HOST=0.0.0.0 PORT=4000 NODE_ENV=development nodemon server/index.js --watch server",
-    "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
-    "generate": "nuxt generate"
+    "start": "./action.sh start",
+    "setup": "./action.sh setup",
+    "watch": "parcel watch assets/js/app.js --no-autoinstall --out-dir assets/dist --cache-dir cache/parcel --public-url /assets/dist",
+    "build": "rm -rf assets/dist && parcel build assets/js/app.js --no-source-maps --out-dir assets/dist --public-url ./ --cache-dir cache/parcel"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.1",
-    "cookieparser": "^0.1.0",
-    "cross-env": "^7.0.2",
-    "express": "^4.17.1",
-    "marked": "^1.1.1",
-    "nuxt": "^2.14.1",
+    "cash-dom": "^8.0.0",
     "redgoose-content-body": "https://github.com/redgoose-dev/redgoose-content-body.git"
   },
   "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "cssnano": "^4.1.10",
     "node-sass": "^4.14.1",
-    "nodemon": "^2.0.4",
-    "sass-loader": "^9.0.3"
+    "parcel": "^1.12.4",
+    "postcss-modules": "^3.2.0",
+    "postcss-preset-env": "^6.7.0"
   }
 }

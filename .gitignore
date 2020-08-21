@@ -1,13 +1,26 @@
+# directories
 .idea/
 node_modules/
-.nuxt/
-dist/
-.AppleDouble/
+cache/view/*
+cache/parcel/*
+!cache/view/.keep
+vendor/*
+assets/vendor/*
+assets/dist/*
+view/pages/*
+!view/pages/.keep
 
+# global files
 .DS_Store
-0
-pages/page/*
-static/
-!static/images
-user/*
+.env
+!resource/.env
 yarn.lock
+yarn-error.log
+package-lock.json
+composer.lock
+
+# user files
+user/*
+!user/.keep
+robots.txt
+view/head-user.blade.php
