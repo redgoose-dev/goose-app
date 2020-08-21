@@ -6,7 +6,7 @@
 
 ## demo url
 
-https://projects.redgoose.me/goose/app
+https://projects.redgoose.me/goose/app/
 
 
 ## Usage

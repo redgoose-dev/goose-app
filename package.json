@@ -1,6 +1,6 @@
 {
   "name": "goose-app",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "index.js",
   "repository": "https://github.com/redgoose-dev/goose-app.git",
   "author": "redgoose <scripter@me.com>",
