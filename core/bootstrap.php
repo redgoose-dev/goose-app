@@ -19,20 +19,20 @@ catch(Exception $e)
 }
 
 // ini_set
-if ($_ENV['DEBUG'] === '1')
+if ($_ENV['APP_DEBUG'] === '1')
 {
   error_reporting(E_ALL & ~E_NOTICE);
 }
 
 // set values
-define('__ROOT__', preg_replace('/\/$/', '', $_ENV['PATH_RELATIVE']));
-define('__API__', preg_replace('/\/$/', '', $_ENV['PATH_API']));
-define('__URL__', preg_replace('/\/$/', '', $_ENV['PATH_URL']));
+define('__ROOT__', preg_replace('/\/$/', '', $_ENV['APP_PATH_RELATIVE']));
+define('__API__', preg_replace('/\/$/', '', $_ENV['APP_PATH_API']));
+define('__URL__', preg_replace('/\/$/', '', $_ENV['APP_PATH_URL']));
 
 // set default timezone
-if (!!$_ENV['TIMEZONE'])
+if (!!$_ENV['APP_TIMEZONE'])
 {
-  date_default_timezone_set($_ENV['TIMEZONE']);
+  date_default_timezone_set($_ENV['APP_TIMEZONE']);
 }
 
 // set blade
@@ -64,11 +64,11 @@ try {
 
   // init rest api
   $api = new RestAPI((object)[
-    'url' => $_ENV['PATH_API'],
+    'url' => $_ENV['APP_PATH_API'],
     'outputType' => 'json',
-    'headers' => ['Authorization: '.$_ENV['TOKEN_PUBLIC']],
+    'headers' => ['Authorization: '.$_ENV['APP_TOKEN_PUBLIC']],
     'timeout' => 30,
-    'debug' => $_ENV['DEBUG'] === '1',
+    'debug' => $_ENV['APP_DEBUG'] === '1',
   ]);
 
   // set navigation
@@ -268,7 +268,7 @@ try {
 }
 catch(Exception $e)
 {
-  if ($_ENV['DEBUG'] === '1')
+  if ($_ENV['APP_DEBUG'] === '1')
   {
     $code = (int)$e->getCode();
     $message = $e->getMessage();
@@ -298,6 +298,6 @@ catch(Exception $e)
     ]);
   }
   catch(Exception $e) {
-    echo ($_ENV['DEBUG'] === '1') ? $e->getCode() . ': ' . $e->getMessage() : 'Unknown error.';
+    echo ($_ENV['APP_DEBUG'] === '1') ? $e->getCode() . ': ' . $e->getMessage() : 'Unknown error.';
   }
 }

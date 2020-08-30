@@ -42,7 +42,7 @@ class Util {
       $key,
       $value,
       time() + 3600 * 24 * $day,
-      $_ENV['PATH_COOKIE']
+      $_ENV['APP_PATH_COOKIE']
     );
   }
 
@@ -92,7 +92,7 @@ class Util {
       {
         $obj->srl = (int)$item->srl;
         $obj->title = $item->title === '.' ? 'untitled work' : $item->title;
-        $obj->image = isset($item->json->thumbnail->path) ? $_ENV['PATH_API'].'/'.$item->json->thumbnail->path : null;
+        $obj->image = isset($item->json->thumbnail->path) ? $_ENV['APP_PATH_API'].'/'.$item->json->thumbnail->path : null;
         $obj->regdate = isset($item->order) ? $item->order : $item->regdate;
         $obj->star = (int)$item->star;
         $obj->hit = (int)$item->hit;
