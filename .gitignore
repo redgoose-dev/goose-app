@@ -1,10 +1,11 @@
 # directories
 .idea/
 node_modules/
-cache/
 vendor/
 view/pages/*
 !view/pages/.keep
+cache/*
+!cache/.keep
 
 # global files
 .DS_Store
