@@ -7,11 +7,11 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^5.1.0",
-        "altorouter/altorouter": "^2.0.1",
-        "eftec/bladeone": "^3.46.3",
+        "vlucas/phpdotenv": "^5.4.1",
+        "altorouter/altorouter": "^2.0.2",
+        "eftec/bladeone": "^4.5.3",
         "erusev/parsedown": "^1.7.4",
-        "redgoose/paginate": "^1.0.3",
+        "redgoose/paginate": "^1.0.4",
         "redgoose/console": "^1.0.1",
         "redgoose/restapi": "^1.0.2"
     },

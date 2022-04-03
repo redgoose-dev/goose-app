@@ -1,5 +1,4 @@
-@import "mixin";
-@import "fonts";
+@use "mixins";
 
 :root {
   --color-text: #222;
@@ -14,7 +13,7 @@
   --font-eng: Helvetica, Arial, sans-serif;
 }
 .mode-dark {
-  @include dark-mode() {
+  @include mixins.dark-mode() {
     --color-text: #fff;
     --color-text-blur: #777;
     --color-text-content: #ddd;
@@ -23,7 +22,7 @@
   }
 }
 .mode-responsive {
-  @include responsive(tablet) {
+  @include mixins.responsive(tablet) {
     --size-padding-side: 64px;
   }
 }
@@ -55,7 +54,7 @@ code, kbd, pre, samp {
   color: #fff;
 }
 
-@import "~redgoose-content-body/dist/body.scss";
+@import "redgoose-content-body/dist/body.scss";
 @import "layout";
 @import "index";
 @import "article";

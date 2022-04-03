@@ -1,12 +1,8 @@
 # directories
 .idea/
 node_modules/
-cache/view/*
-cache/parcel/*
-!cache/view/.keep
-vendor/*
-assets/vendor/*
-assets/dist/*
+cache/
+vendor/
 view/pages/*
 !view/pages/.keep
 

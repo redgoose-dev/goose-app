@@ -1,6 +1,6 @@
 {
   "name": "goose-app",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "main": "index.js",
   "repository": "https://github.com/redgoose-dev/goose-app.git",
   "author": "redgoose <scripter@me.com>",
@@ -8,19 +8,20 @@
   "scripts": {
     "start": "./action.sh start",
     "setup": "./action.sh setup",
-    "watch": "parcel watch assets/js/app.js --no-autoinstall --out-dir assets/dist --cache-dir cache/parcel --public-url /assets/dist",
-    "build": "rm -rf assets/dist && parcel build assets/js/app.js --no-source-maps --out-dir assets/dist --public-url ./ --cache-dir cache/parcel"
+    "dev": "vite",
+    "watch": "",
+    "build": "vite build"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "dependencies": {
-    "cash-dom": "^8.0.0",
+    "cash-dom": "^8.1.1",
     "redgoose-content-body": "https://github.com/redgoose-dev/redgoose-content-body.git"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "cssnano": "^4.1.10",
-    "node-sass": "^4.14.1",
-    "parcel": "^1.12.4",
-    "postcss-modules": "^3.2.0",
-    "postcss-preset-env": "^6.7.0"
+    "sass": "^1.49.11",
+    "vite": "^2.9.1"
   }
 }

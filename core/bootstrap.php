@@ -36,7 +36,7 @@ if (!!$_ENV['APP_TIMEZONE'])
 }
 
 // set blade
-$blade = new Blade(__PATH__.'/view', __PATH__.'/cache/view');
+$blade = new Blade(__PATH__.'/view', __PATH__.'/cache');
 
 // get preference
 if (file_exists(__PATH__.'/user/preference.php'))
@@ -83,7 +83,7 @@ try {
       // get articles
       $res = $api->call('get', '/articles/', (object)[
         'field' => 'srl,nest_srl,category_srl,json,title,order,regdate,hit,star',
-        'app' => $preference->app_srl,
+        'app_srl' => $preference->app_srl,
         'page' => $page,
         'size' => $size,
         'order' => '`order` desc, `srl` desc',
@@ -148,7 +148,7 @@ try {
       $articles = $api->call('get', '/articles/', (object)[
         'field' => 'srl,category_srl,title,json,type,order,hit,star,regdate',
         'order' => '`order` desc, `srl` desc',
-        'app' => $preference->app_srl,
+        'app_srl' => $preference->app_srl,
         'nest' => $nest->srl,
         'category' => $category_srl,
         'page' => $page,
@@ -182,7 +182,7 @@ try {
     case 'article':
       // get article
       $article = $api->call('get', '/articles/'.$_params->srl.'/', (object)[
-        'app' => $preference->app_srl,
+        'app_srl' => $preference->app_srl,
         'hit' => Util::checkCookie('goose-hit-'.$_params->srl) ? 0 : 1,
         'ext_field' => 'category_name,nest_name',
       ]);

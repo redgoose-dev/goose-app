@@ -1,4 +1,4 @@
-@import "mixin";
+@use "mixins";
 
 .page {
   --index-body-top-margin: 16px;
@@ -25,7 +25,7 @@
   }
 
   .mode-responsive & {
-    @include responsive(tablet) {
+    @include mixins.responsive(tablet) {
       --index-body-top-margin: 24px;
       margin-top: 42px;
       padding: 0 var(--size-padding-side);
@@ -78,7 +78,7 @@
   .mode-responsive & {
     min-height: 360px;
     max-height: 580px;
-    @include responsive(tablet) {
+    @include mixins.responsive(tablet) {
       &__image {
         svg {
           width: 120px;

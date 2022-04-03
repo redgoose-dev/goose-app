@@ -1,4 +1,4 @@
-@import "mixin";
+@use "mixins";
 
 // header
 .layout-header {
@@ -199,7 +199,7 @@
   }
 
   .mode-responsive & {
-    @include responsive(tablet) {
+    @include mixins.responsive(tablet) {
       --size-header-height: 54px;
       height: var(--size-header-height);
       &__wrap {
@@ -235,7 +235,7 @@
     }
   }
   .mode-dark & {
-    @include dark-mode() {
+    @include mixins.dark-mode() {
       --color-header-bg: rgba(17,17,17,.75);
       --color-header-fill: #ccc;
       --color-header-fill-blur: #666;
@@ -320,7 +320,7 @@
     }
   }
   .mode-responsive & {
-    @include responsive(tablet) {
+    @include mixins.responsive(tablet) {
       > ul {
         position: static;
         background: none;
@@ -380,12 +380,12 @@
     }
   }
   .mode-dark & {
-    @include dark-mode() {
+    @include mixins.dark-mode() {
     }
   }
   .mode-dark.mode-responsive & {
-    @include dark-mode() {
-      @include responsive(tablet) {
+    @include mixins.dark-mode() {
+      @include mixins.responsive(tablet) {
         > ul {
           ul {
             background: #111;
@@ -490,7 +490,7 @@
     button[type=submit] {}
   }
   .mode-responsive & {
-    @include responsive(tablet) {
+    @include mixins.responsive(tablet) {
       --size-header-search-height: 48px;
       form {
         left: auto;
@@ -513,7 +513,7 @@
   }
 
   .mode-responsive & {
-    @include responsive(tablet) {
+    @include mixins.responsive(tablet) {
       padding: 52px 0 24px;
     }
   }

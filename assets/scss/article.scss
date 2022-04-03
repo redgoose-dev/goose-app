@@ -1,4 +1,4 @@
-@import "mixin";
+@use "mixins";
 
 .article {
   margin: 24px 0 0;
@@ -128,7 +128,7 @@
   }
 
   .mode-responsive & {
-    @include responsive(tablet) {
+    @include mixins.responsive(tablet) {
       margin: 42px 0 0;
       &__wrap {
         max-width: 768px;
@@ -155,7 +155,7 @@
     }
   }
   .mode-dark & {
-    @include dark-mode() {
+    @include mixins.dark-mode() {
       &__like {
         button {
           svg {

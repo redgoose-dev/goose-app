@@ -122,6 +122,6 @@ if ($preference->responsive) $classNameInHtml[] = 'mode-responsive';
   </footer>
 </main>
 @yield('script')
-<script src="{{__ROOT__}}/assets/dist/app.js"></script>
+<script type="module" src="{{__ROOT__}}/assets/dist/app.es.js"></script>
 </body>
 </html>
